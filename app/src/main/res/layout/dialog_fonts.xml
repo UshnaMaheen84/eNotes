@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="500dp"
+    >
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="450dp"
+        android:layout_margin="5dp"
+        android:layout_centerInParent="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/comfortaa_bold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Comfortaa bold"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/comfortaa_bold">
+
+                </TextView>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/comfortaa_light"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="comfortaa light"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/comfortaa_light">
+
+                </TextView>
+
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/comfortaa_medium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Comfortaa medium"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/comfortaa_medium">
+
+                </TextView>
+
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/comfortaa_reg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Comfortaa regular"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/comfortaa_regular">
+
+                </TextView>
+
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/roboto_bold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="roboto"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/roboto_bold">
+
+                </TextView>
+
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/roboto_italic"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Roboto italic"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/roboto_italic">
+
+                </TextView>
+
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/roboto_reg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Roboto Regular"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/roboto_regular">
+
+                </TextView>
+
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/satisfy"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Satisfy"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/satisfy">
+
+                </TextView>
+
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/waver"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Waver"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/waver">
+
+                </TextView>
+
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/shadows"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Shadows"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/shadows_into_light">
+
+                </TextView>
+
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/dancing_bold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Dancing script bold"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/dancing_script_bold">
+
+                </TextView>
+
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/dancing_medium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Dancing script medium"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/dancing_script_med">
+
+                </TextView>
+
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/dancing_reg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Dancing script regular"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/dancing_script_reg">
+
+                </TextView>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/gotham_bold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="gotham bold"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/gotham_bold">
+
+                </TextView>
+
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/gotham_italic"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Gotham italic"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/gotham_medium_italic">
+
+                </TextView>
+
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/gotham_medium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="gotham medium"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/gotham_medium">
+
+                </TextView>
+
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/lato_bold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Lato bold"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/lato_bold">
+
+                </TextView>
+
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/lato_italic"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Lato italic"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/lato_italic">
+
+                </TextView>
+
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/lato_reg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Lato reg"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/lato_reg">
+
+                </TextView>
+
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/montserrat_bold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Montserrat bold"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/montserrat_bold">
+
+                </TextView>
+
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/montserrat_italic"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Montserrat italic"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/montserrat_italic">
+
+                </TextView>
+
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/montserrat_regular"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Montserrat reg"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/montserrat_reg">
+
+                </TextView>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/pacifico"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Pacifico"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/pacifico">
+
+                </TextView>
+
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/poppins_bold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Poppins bold"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/poppins_bold">
+
+                </TextView>
+
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/poppins_italic"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Poppins italic"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/poppins_italic">
+
+                </TextView>
+
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/poppins_reg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Poppins reg"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/poppins_regular">
+
+                </TextView>
+
+            </androidx.cardview.widget.CardView>
+
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

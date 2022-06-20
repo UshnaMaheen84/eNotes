@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/DC/AndroidStudioProjects/eNotes/app/src/main/res/drawable/bookmark.xml" value="0.203" />
+        <entry key="..\:/Users/DC/AndroidStudioProjects/eNotes/app/src/main/res/drawable/bookmark_blue.xml" value="0.203" />
+        <entry key="..\:/Users/DC/AndroidStudioProjects/eNotes/app/src/main/res/drawable/bookmark_grren.xml" value="0.203" />
+        <entry key="..\:/Users/DC/AndroidStudioProjects/eNotes/app/src/main/res/drawable/bookmark_orage.xml" value="0.203" />
+        <entry key="..\:/Users/DC/AndroidStudioProjects/eNotes/app/src/main/res/drawable/bookmark_red.xml" value="0.203" />
+        <entry key="..\:/Users/DC/AndroidStudioProjects/eNotes/app/src/main/res/drawable/bookmark_yellow.xml" value="0.203" />
+        <entry key="..\:/Users/DC/AndroidStudioProjects/eNotes/app/src/main/res/drawable/delete_24.xml" value="0.1755" />
+        <entry key="..\:/Users/DC/AndroidStudioProjects/eNotes/app/src/main/res/drawable/ic_add.xml" value="0.238" />
+        <entry key="..\:/Users/DC/AndroidStudioProjects/eNotes/app/src/main/res/drawable/redo_24.xml" value="0.1755" />
+        <entry key="..\:/Users/DC/AndroidStudioProjects/eNotes/app/src/main/res/drawable/round_button.xml" value="0.194" />
+        <entry key="..\:/Users/DC/AndroidStudioProjects/eNotes/app/src/main/res/layout/activity_login.xml" value="0.25" />
+        <entry key="..\:/Users/DC/AndroidStudioProjects/eNotes/app/src/main/res/layout/activity_main.xml" value="0.24010416666666667" />
+        <entry key="..\:/Users/DC/AndroidStudioProjects/eNotes/app/src/main/res/layout/activity_signup.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/DC/AndroidStudioProjects/eNotes/app/src/main/res/layout/activity_text_note.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/DC/AndroidStudioProjects/eNotes/app/src/main/res/layout/activity_view_notes.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/DC/AndroidStudioProjects/eNotes/app/src/main/res/layout/alertdialog_cocation.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/DC/AndroidStudioProjects/eNotes/app/src/main/res/layout/appbar_create_note.xml" value="0.253125" />
+        <entry key="..\:/Users/DC/AndroidStudioProjects/eNotes/app/src/main/res/layout/appbar_main.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/DC/AndroidStudioProjects/eNotes/app/src/main/res/layout/color_dialog.xml" value="0.176" />
+        <entry key="..\:/Users/DC/AndroidStudioProjects/eNotes/app/src/main/res/layout/dialog_alarm.xml" value="0.253125" />
+        <entry key="..\:/Users/DC/AndroidStudioProjects/eNotes/app/src/main/res/layout/dialog_bookmark.xml" value="0.2046875" />
+        <entry key="..\:/Users/DC/AndroidStudioProjects/eNotes/app/src/main/res/layout/dialog_draw.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/DC/AndroidStudioProjects/eNotes/app/src/main/res/layout/dialog_fonts.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/DC/AndroidStudioProjects/eNotes/app/src/main/res/layout/dialog_size.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/DC/AndroidStudioProjects/eNotes/app/src/main/res/layout/file_attach.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/DC/AndroidStudioProjects/eNotes/app/src/main/res/layout/img_attach.xml" value="0.253125" />
+        <entry key="..\:/Users/DC/AndroidStudioProjects/eNotes/app/src/main/res/layout/itemview_show_notes.xml" value="0.253125" />
+        <entry key="..\:/Users/DC/AndroidStudioProjects/eNotes/app/src/main/res/layout/nav_header.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/DC/AndroidStudioProjects/eNotes/app/src/main/res/menu/navigation_menu.xml" value="0.536" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

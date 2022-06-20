@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <com.mihir.drawingcanvas.drawingView
+        android:id="@+id/drawing_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+    </com.mihir.drawingcanvas.drawingView>
+
+    <ImageButton
+        android:id="@+id/done_btn"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/done_24"
+        android:layout_alignParentEnd="true">
+
+    </ImageButton>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true">
+
+        <ImageButton
+            android:id="@+id/undo_btn"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:src="@drawable/undo_24"
+            >
+        </ImageButton>
+
+        <ImageButton
+            android:id="@+id/redo_btn"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:src="@drawable/redo_24">
+
+        </ImageButton> <ImageButton
+        android:id="@+id/delete_btn"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:src="@drawable/delete_24">
+
+    </ImageButton>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

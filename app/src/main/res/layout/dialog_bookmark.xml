@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Chose A Tag"
+        android:textSize="25sp"
+        android:textColor="@color/black"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        >
+
+    </TextView>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/black">
+
+    </View>
+    <LinearLayout
+        android:id="@+id/bookmrk_Travel"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:orientation="horizontal"
+        android:layout_margin="15dp"
+        >
+
+        <ImageView
+        android:layout_width="25dp"
+        android:layout_height="25sp"
+        android:layout_margin="5dp"
+        android:src="@drawable/bookmark_blue"
+        >
+
+
+    </ImageView>
+
+        <TextView
+            android:id="@+id/travel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Travel"
+            android:textSize="20sp"
+
+            >
+
+        </TextView>
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/bookmrk_personal"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:orientation="horizontal"
+        android:layout_marginStart="15dp"
+        android:layout_marginBottom="10dp"
+        >
+        <ImageView
+        android:layout_width="25dp"
+        android:layout_height="25sp"
+        android:layout_margin="5dp"
+        android:src="@drawable/bookmark_grren"
+        >
+
+
+    </ImageView>
+
+        <TextView
+            android:id="@+id/personal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Personal"
+            android:textSize="20sp"
+
+            >
+
+        </TextView>
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/bookmrk_birthday"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:orientation="horizontal"
+        android:layout_marginStart="15dp"
+        android:layout_marginBottom="10dp"
+        >
+
+        <ImageView
+        android:layout_width="25dp"
+        android:layout_height="25sp"
+        android:layout_margin="5dp"
+        android:src="@drawable/bookmark_orage"
+        >
+
+
+    </ImageView>
+
+        <TextView
+            android:id="@+id/birthday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Birthday"
+            android:textSize="20sp"
+
+            >
+
+        </TextView>
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/bookmrk_life"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:orientation="horizontal"
+        android:layout_marginStart="15dp"
+        android:layout_marginBottom="10dp">
+        <ImageView
+        android:layout_width="25dp"
+        android:layout_height="25sp"
+        android:layout_margin="5dp"
+        android:src="@drawable/bookmark_yellow"
+        >
+
+
+    </ImageView>
+
+        <TextView
+            android:id="@+id/life"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Life"
+            android:textSize="20sp"
+
+            >
+
+        </TextView>
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/bookmrk_work"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:orientation="horizontal"
+        android:layout_marginStart="15dp"
+        android:layout_marginBottom="10dp">
+        <ImageView
+        android:layout_width="25dp"
+        android:layout_height="25sp"
+        android:layout_margin="5dp"
+        android:src="@drawable/bookmark_red"
+        >
+
+
+    </ImageView>
+
+        <TextView
+            android:id="@+id/work"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Work"
+            android:textSize="20sp"
+
+            >
+
+        </TextView>
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/bookmrk_untag"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:orientation="horizontal"
+        android:layout_marginStart="15dp"
+        android:layout_marginBottom="10dp">
+        <ImageView
+        android:layout_width="25dp"
+        android:layout_height="25sp"
+        android:layout_margin="5dp"
+        android:src="@drawable/bookmark_border_24"
+        >
+
+    </ImageView>
+
+        <TextView
+            android:id="@+id/untag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Untagged"
+            android:textSize="20sp"
+
+            >
+
+        </TextView>
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/black"
+        android:layout_marginBottom="15dp">
+    </View>
+
+</LinearLayout>

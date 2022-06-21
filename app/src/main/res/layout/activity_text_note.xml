@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Text_note"
-    android:background="@color/grey">
+    android:background="@color/grey"
+    tools:context=".Text_note">
 
     <include
         android:id="@+id/included"
@@ -14,109 +13,120 @@
         android:layout_width="match_parent"
         android:layout_height="55dp" />
 
-    <LinearLayout
-        android:id="@+id/linear"
-        android:layout_marginTop="8dp"
-        android:layout_below="@id/included"
+    <HorizontalScrollView
+        android:id="@+id/selectionScroll"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@color/white"
-        android:orientation="horizontal"
-        android:gravity="center">
+        android:layout_height="wrap_content"
+        android:layout_below="@id/included"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true">
+
+        <LinearLayout
+            android:id="@+id/linear"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/white"
+            android:gravity="center"
+            android:orientation="horizontal">
 
 
-        <ImageButton
-            android:id="@+id/fileupload"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="@color/orange"
-            android:layout_marginEnd="5dp"
-            android:layout_marginStart="5dp"
-            android:src="@drawable/ic_baseline_attach_file_24"
+            <ImageButton
+                android:id="@+id/fileupload"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:background="@color/orange"
+                android:src="@drawable/ic_baseline_attach_file_24"
 
-            >
+                >
 
-        </ImageButton>
+            </ImageButton>
 
-        <ImageButton
-            android:id="@+id/bgcolor"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="@color/orange"
-            android:layout_marginEnd="5dp"
-            android:src="@drawable/ic_baseline_color_lens_24">
+            <ImageButton
+                android:id="@+id/bgcolor"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="5dp"
+                android:background="@color/orange"
+                android:src="@drawable/ic_baseline_color_lens_24">
 
-        </ImageButton>
+            </ImageButton>
 
-        <ImageButton
-            android:id="@+id/fontcolor"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="@color/orange"
-            android:layout_marginEnd="5dp" android:src="@drawable/ic_baseline_color_lens_24">
+            <ImageButton
+                android:id="@+id/fontcolor"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="5dp"
+                android:background="@color/orange"
+                android:src="@drawable/ic_baseline_color_lens_24">
 
-        </ImageButton>
+            </ImageButton>
 
-        <ImageButton
-            android:id="@+id/textsize"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="@color/orange"
-            android:layout_marginEnd="5dp"
-            android:src="@drawable/ic_baseline_format_size_24">
+            <ImageButton
+                android:id="@+id/textsize"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="5dp"
+                android:background="@color/orange"
+                android:src="@drawable/ic_baseline_format_size_24">
 
-        </ImageButton>
+            </ImageButton>
 
-        <ImageButton
-            android:id="@+id/textfont"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="@color/orange"
-            android:layout_marginEnd="5dp"
-            android:src="@drawable/ic_baseline_font_download_24">
+            <ImageButton
+                android:id="@+id/textfont"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="5dp"
+                android:background="@color/orange"
+                android:src="@drawable/ic_baseline_font_download_24">
 
-        </ImageButton>
+            </ImageButton>
 
-        <ImageButton
-            android:id="@+id/my_location"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="@color/orange"
-            android:layout_marginEnd="5dp"
-            android:src="@drawable/ic_baseline_location_on_24">
+            <ImageButton
+                android:id="@+id/my_location"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="5dp"
+                android:background="@color/orange"
+                android:src="@drawable/ic_baseline_location_on_24">
 
-        </ImageButton>
-        <ImageButton
-            android:id="@+id/my_sketch"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="@color/orange"
-            android:layout_marginEnd="5dp"
-            android:src="@drawable/create_24">
+            </ImageButton>
 
-        </ImageButton>
+            <ImageButton
+                android:id="@+id/my_sketch"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="5dp"
+                android:background="@color/orange"
+                android:src="@drawable/create_24">
 
-  <ImageButton
-            android:id="@+id/my_bookmark"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="@color/orange"
-            android:layout_marginEnd="5dp"
-            android:src="@drawable/bookmark">
+            </ImageButton>
 
-        </ImageButton>
+            <ImageButton
+                android:id="@+id/my_bookmark"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="5dp"
+                android:background="@color/orange"
+                android:src="@drawable/bookmark">
+
+            </ImageButton>
 
 
-    </LinearLayout>
+        </LinearLayout>
+    </HorizontalScrollView>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/linear"
+        android:layout_below="@id/selectionScroll"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
@@ -140,14 +150,15 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card2"
-        android:layout_below="@id/card1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:elevation="10dp"
+        android:layout_below="@id/card1"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
+        android:layout_marginBottom="12dp"
 
-        android:layout_marginBottom="12dp">
+        android:elevation="10dp">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -179,12 +190,12 @@
                 android:src="@drawable/bookmark">
 
             </ImageView>
+
             <ScrollView
                 android:id="@+id/scroll"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@id/text_context"
-                >
+                android:layout_below="@id/text_context">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -220,30 +231,31 @@
                         android:textSize="10sp">
 
                     </TextView>
+
                     <TextView
                         android:id="@+id/alarm_tv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="10sp"
-                        android:text="add reminder">
+                        android:text="add reminder"
+                        android:textSize="10sp">
 
                     </TextView>
 
 
                 </LinearLayout>
             </ScrollView>
+
             <Button
                 android:id="@+id/done"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="done"
+                android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
-                android:layout_alignParentEnd="true">
+                android:text="done">
 
             </Button>
 
         </RelativeLayout>
-
 
 
     </androidx.cardview.widget.CardView>

@@ -38,6 +38,8 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.madrapps.pikolo.ColorPicker
 import com.madrapps.pikolo.listeners.SimpleColorSelectionListener
 import com.mihir.drawingcanvas.drawingView
+import kotlinx.android.synthetic.main.activity_text_note.*
+import kotlinx.android.synthetic.main.dialog_draw.*
 import java.io.IOException
 import java.util.*
 import kotlin.collections.ArrayList
@@ -86,25 +88,25 @@ var addressline :String=""
 
         var typeface = ResourcesCompat.getFont(this, font)
 
-        val cardView = findViewById<CardView>(R.id.card2)
-        val cardView1 = findViewById<CardView>(R.id.card1)
-        val done = findViewById<Button>(R.id.done)
-        val content = findViewById<EditText>(R.id.text_context)
-        val text_title = findViewById<EditText>(R.id.text_title)
-        val currentloctn=  findViewById<TextView>(R.id.location)
-        val bgcolor = findViewById<ImageButton>(R.id.bgcolor)
-        val textfont = findViewById<ImageButton>(R.id.textfont)
-        val textSize = findViewById<ImageButton>(R.id.textsize)
-        val font_color = findViewById<ImageButton>(R.id.fontcolor)
+//        val cardView = findViewById<CardView>(R.id.card2)
+//        val cardView1 = findViewById<CardView>(R.id.card1)
+//        val done = findViewById<Button>(R.id.done)
+//        val content = findViewById<EditText>(R.id.text_context)
+//        val text_title = findViewById<EditText>(R.id.text_title)
+//        val currentloctn=  findViewById<TextView>(R.id.location)
+//        val bgcolor = findViewById<ImageButton>(R.id.bgcolor)
+//        val textfont = findViewById<ImageButton>(R.id.textfont)
+//        val textSize = findViewById<ImageButton>(R.id.textsize)
+//        val font_color = findViewById<ImageButton>(R.id.fontcolor)
            val imgUriList = ArrayList<Uri>()
         val imageNameList = ArrayList<String>()
-        val img_recyclerview = findViewById<RecyclerView>(R.id.img_attach)
-        val img_adapter = Adapter_img_attach(imgUriList, imageNameList, this)
-        val alarm_tv= findViewById<TextView>(R.id.alarm_tv)
+//        val img_recyclerview = findViewById<RecyclerView>(R.id.img_attach)
+//        val img_adapter = Adapter_img_attach(imgUriList, imageNameList, this)
+//        val alarm_tv= findViewById<TextView>(R.id.alarm_tv)
         val myCalendar: Calendar = Calendar.getInstance()
-        val bookmrk = findViewById<ImageView>(R.id.bookmark)
-        val mybookmrk = findViewById<ImageButton>(R.id.my_bookmark)
-        val my_drawing= findViewById<ImageButton>(R.id.my_sketch)
+//        val bookmrk = findViewById<ImageView>(R.id.bookmark)
+//        val mybookmrk = findViewById<ImageButton>(R.id.my_bookmark)
+//        val my_drawing= findViewById<ImageButton>(R.id.my_sketch)
 
         val time =TimePickerDialog.OnTimeSetListener{ view, hour,minute ->
             //time save hua
@@ -153,12 +155,12 @@ var addressline :String=""
 
         }
 
-        content.setTextSize(txtsize)
+        text_context.setTextSize(txtsize)
         text_title.setTypeface(typeface)
-        content.setTypeface(typeface)
+        text_context.setTypeface(typeface)
 
         var ooo: String =""
-        mybookmrk.setOnClickListener {
+        bookmark.setOnClickListener {
             val view = layoutInflater.inflate(R.layout.dialog_bookmark, null)
             val mBuilder = AlertDialog.Builder(this)
                 .setView(view)
@@ -168,34 +170,34 @@ var addressline :String=""
             val red= view.findViewById<LinearLayout>(R.id.bookmrk_work)
                 red.setOnClickListener {
                     mAlertDialog.dismiss()
-                bookmrk.setImageResource(R.drawable.bookmark_red)
+                    bookmark.setImageResource(R.drawable.bookmark_red)
             }
 
             val blue= view.findViewById<LinearLayout>(R.id.bookmrk_Travel)
             blue.setOnClickListener() {
                 mAlertDialog.dismiss()
-                bookmrk.setImageResource(R.drawable.bookmark_blue)
+                bookmark.setImageResource(R.drawable.bookmark_blue)
             }
 
             val green= view.findViewById<LinearLayout>(R.id.bookmrk_personal)
             green.setOnClickListener {
                 mAlertDialog.dismiss()
-                bookmrk.setImageResource(R.drawable.bookmark_grren)
+                bookmark.setImageResource(R.drawable.bookmark_grren)
             }
             val yellow= view.findViewById<LinearLayout>(R.id.bookmrk_life)
             yellow.setOnClickListener {
                 mAlertDialog.dismiss()
-                bookmrk.setImageResource(R.drawable.bookmark_yellow)
+                bookmark.setImageResource(R.drawable.bookmark_yellow)
             }
             val orange= view.findViewById<LinearLayout>(R.id.bookmrk_birthday)
             orange.setOnClickListener {
                 mAlertDialog.dismiss()
-                bookmrk.setImageResource(R.drawable.bookmark_orage)
+                bookmark.setImageResource(R.drawable.bookmark_orage)
             }
             val untag= view.findViewById<LinearLayout>(R.id.bookmrk_untag)
             untag.setOnClickListener {
                 mAlertDialog.dismiss()
-                bookmrk.setImageResource(R.drawable.bookmark_border_24)
+                bookmark.setImageResource(R.drawable.bookmark_border_24)
             }
         }
 
@@ -211,7 +213,7 @@ var addressline :String=""
                 mAlertDialog.dismiss()
                 font= R.font.comfortaa_bold
                 typeface = ResourcesCompat.getFont(this, font)
-                content.setTypeface(typeface)
+                text_context.setTypeface(typeface)
                 text_title.setTypeface(typeface)
 
             }
@@ -221,7 +223,7 @@ var addressline :String=""
                 mAlertDialog.dismiss()
                 font= R.font.comfortaa_light
                 typeface = ResourcesCompat.getFont(this, font)
-                content.setTypeface(typeface)
+                    text_context.setTypeface(typeface)
                     text_title.setTypeface(typeface)
 
 
@@ -231,7 +233,7 @@ var addressline :String=""
                 mAlertDialog.dismiss()
                 font= R.font.comfortaa_medium
                 typeface = ResourcesCompat.getFont(this, font)
-                content.setTypeface(typeface)
+                    text_context.setTypeface(typeface)
                     text_title.setTypeface(typeface)
 
                 }
@@ -240,7 +242,7 @@ var addressline :String=""
                 mAlertDialog.dismiss()
                 font= R.font.comfortaa_bold
                 typeface = ResourcesCompat.getFont(this, font)
-                content.setTypeface(typeface)
+                    text_context.setTypeface(typeface)
                     text_title.setTypeface(typeface)
 
                 }
@@ -249,7 +251,7 @@ var addressline :String=""
                 mAlertDialog.dismiss()
                 font= R.font.dancing_script_bold
                 typeface = ResourcesCompat.getFont(this, font)
-                content.setTypeface(typeface)
+                text_context.setTypeface(typeface)
                 text_title.setTypeface(typeface)
 
 
@@ -259,7 +261,7 @@ var addressline :String=""
                 mAlertDialog.dismiss()
                 font= R.font.dancing_script_med
                 typeface = ResourcesCompat.getFont(this, font)
-                content.setTypeface(typeface)
+                text_context.setTypeface(typeface)
                 text_title.setTypeface(typeface)
 
             }
@@ -268,7 +270,7 @@ var addressline :String=""
                 mAlertDialog.dismiss()
                 font= R.font.dancing_script_reg
                 typeface = ResourcesCompat.getFont(this, font)
-                content.setTypeface(typeface)
+                text_context.setTypeface(typeface)
                 text_title.setTypeface(typeface)
 
             }
@@ -277,7 +279,7 @@ var addressline :String=""
                 mAlertDialog.dismiss()
                 font= R.font.gotham_bold
                 typeface = ResourcesCompat.getFont(this, font)
-                content.setTypeface(typeface)
+                text_context.setTypeface(typeface)
                 text_title.setTypeface(typeface)
 
             }
@@ -286,7 +288,7 @@ var addressline :String=""
                 mAlertDialog.dismiss()
                 font= R.font.comfortaa_medium
                 typeface = ResourcesCompat.getFont(this, font)
-                content.setTypeface(typeface)
+                text_context.setTypeface(typeface)
                 text_title.setTypeface(typeface)
 
             }
@@ -295,7 +297,7 @@ var addressline :String=""
                 mAlertDialog.dismiss()
                 font= R.font.gotham_medium_italic
                 typeface = ResourcesCompat.getFont(this, font)
-                content.setTypeface(typeface)
+                text_context.setTypeface(typeface)
                 text_title.setTypeface(typeface)
 
             }
@@ -304,7 +306,7 @@ var addressline :String=""
                 mAlertDialog.dismiss()
                 font= R.font.lato_bold
                 typeface = ResourcesCompat.getFont(this, font)
-                content.setTypeface(typeface)
+                text_context.setTypeface(typeface)
                 text_title.setTypeface(typeface)
 
             }
@@ -313,7 +315,7 @@ var addressline :String=""
                 mAlertDialog.dismiss()
                 font= R.font.lato_italic
                 typeface = ResourcesCompat.getFont(this, font)
-                content.setTypeface(typeface)
+                text_context.setTypeface(typeface)
                 text_title.setTypeface(typeface)
 
             }
@@ -322,7 +324,7 @@ var addressline :String=""
                 mAlertDialog.dismiss()
                 font= R.font.lato_reg
                 typeface = ResourcesCompat.getFont(this, font)
-                content.setTypeface(typeface)
+                text_context.setTypeface(typeface)
                 text_title.setTypeface(typeface)
 
             }
@@ -331,7 +333,7 @@ var addressline :String=""
                 mAlertDialog.dismiss()
                 font= R.font.montserrat_bold
                 typeface = ResourcesCompat.getFont(this, font)
-                content.setTypeface(typeface)
+                text_context.setTypeface(typeface)
                 text_title.setTypeface(typeface)
 
             }
@@ -340,7 +342,7 @@ var addressline :String=""
                 mAlertDialog.dismiss()
                 font= R.font.montserrat_italic
                 typeface = ResourcesCompat.getFont(this, font)
-                content.setTypeface(typeface)
+                text_context.setTypeface(typeface)
                 text_title.setTypeface(typeface)
 
             }
@@ -349,7 +351,7 @@ var addressline :String=""
                 mAlertDialog.dismiss()
                 font= R.font.montserrat_reg
                 typeface = ResourcesCompat.getFont(this, font)
-                content.setTypeface(typeface)
+                text_context.setTypeface(typeface)
                 text_title.setTypeface(typeface)
 
             }
@@ -530,10 +532,10 @@ var addressline :String=""
         }
 
         // for file upload
-        val fileupload = findViewById<ImageButton>(R.id.fileupload)
+//        val fileupload = findViewById<ImageButton>(R.id.fileupload)
         val file_Name = ArrayList<String>()
         val fileUriList = ArrayList<Uri>()
-        val file_recyclerview = findViewById<RecyclerView>(R.id.file_attach)
+//        val file_recyclerview = findViewById<RecyclerView>(R.id.file_attach)
         val file_adapter = AdapterFile_attach(fileUriList, file_Name, this)
 
         file_recyclerview.adapter = file_adapter
@@ -552,24 +554,25 @@ var addressline :String=""
                 .setTitle("Select Tet Size")
             val mAlertDialog = mBuilder.show()
 
-            val drawingView = view.findViewById<drawingView>(R.id.drawing_view)
-            val done = view.findViewById<ImageButton>(R.id.done_btn)
-            val undo = view.findViewById<ImageButton>(R.id.undo_btn)
-            val redo = view.findViewById<ImageButton>(R.id.redo_btn)
-            val delete = view.findViewById<ImageButton>(R.id.delete_btn)
+//            val drawingView = view.findViewById<drawingView>(R.id.drawing_view)
+//            val done = view.findViewById<ImageButton>(R.id.done_btn)
+//            val undo = view.findViewById<ImageButton>(R.id.undo_btn)
+//            val redo = view.findViewById<ImageButton>(R.id.redo_btn)
+//            val delete = view.findViewById<ImageButton>(R.id.delete_btn)
 
-            undo.setOnClickListener {
+            undo_btn.setOnClickListener {
                 drawingView.undo()
             }
-            redo.setOnClickListener {
+            redo_btn.setOnClickListener {
                 drawingView.redo()
             }
-            delete.setOnClickListener {
+            delete_btn.setOnClickListener {
                 drawingView.clearDrawingBoard()
             }
-            done.setOnClickListener {
+            done_btn.setOnClickListener {
                 mAlertDialog.dismiss()
-                val getit : String = drawingView.getDrawing().toString()
+
+                val getit : String = drawing_view.getDrawing().toString()
                 file_Name.add(getit.toString())
                 val uri= Uri.parse(drawingView.getDrawing().toString())
                 fileUriList.add(uri)

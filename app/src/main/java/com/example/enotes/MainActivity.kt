@@ -23,22 +23,36 @@ import com.google.android.material.navigation.NavigationView
 class MainActivity : AppCompatActivity() {
 
     lateinit var toggle: ActionBarDrawerToggle
+    lateinit var adapter: All_notes_adapter
+    lateinit var notesList: ArrayList<create_note>
+
+
+    fun getAllNotesFromDatabase() {
+        val db = DbHelper(this)
+        val show_notes = findViewById<RecyclerView>(R.id.show_notes)
+        show_notes.layoutManager= GridLayoutManager(this,2)
+
+        notesList = ArrayList()
+        notesList.addAll(db.viewnote())
+        adapter = All_notes_adapter(notesList, this)
+        show_notes.adapter = adapter
+
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-       val db = DbHelper(this)
+        val db = DbHelper(this)
         val notesList : ArrayList<create_note> = ArrayList()
 
-         notesList.addAll(db.viewnote())
+        notesList.addAll(db.viewnote())
 
 
-        val show_notes = findViewById<RecyclerView>(R.id.show_notes)
-        val adapter = All_notes_adapter(notesList,this)
-        show_notes.adapter = adapter
-        show_notes.layoutManager= GridLayoutManager(this,2)
-        adapter.notifyDataSetChanged()
+//        val show_notes = findViewById<RecyclerView>(R.id.show_notes)
+//        val adapter = All_notes_adapter(notesList,this)
+//        show_notes.adapter = adapter
+//        show_notes.layoutManager= GridLayoutManager(this,2)
+//        adapter.notifyDataSetChanged()
 
 
 
@@ -95,5 +109,10 @@ class MainActivity : AppCompatActivity() {
             return true
         }
         return super.onOptionsItemSelected(item)
+    }
+    override fun onResume() {
+        super.onResume()
+
+        getAllNotesFromDatabase()
     }
 }

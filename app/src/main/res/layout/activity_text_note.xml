@@ -179,12 +179,12 @@
                 android:src="@drawable/bookmark">
 
             </ImageView>
+
             <ScrollView
                 android:id="@+id/scroll"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@id/text_context"
-                >
+                android:layout_below="@id/text_context">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -220,16 +220,22 @@
                         android:textSize="10sp">
 
                     </TextView>
+
                     <TextView
                         android:id="@+id/alarm_tv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="10sp"
-                        android:text="add reminder">
+                        android:text="add reminder"
+                        android:textSize="10sp">
 
                     </TextView>
 
+                    <ImageView
+                        android:id="@+id/image"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp">
 
+                    </ImageView>
                 </LinearLayout>
             </ScrollView>
             <Button

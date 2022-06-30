@@ -7,20 +7,22 @@
     android:layout_height="match_parent"
     >
 
-    <com.mihir.drawingcanvas.drawingView
+    <com.redhoodhan.draw.DrawView
         android:id="@+id/drawing_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:defaultBrushColor="@color/black"
         >
 
-    </com.mihir.drawingcanvas.drawingView>
+    </com.redhoodhan.draw.DrawView>
 
     <ImageButton
         android:id="@+id/done_btn"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:src="@drawable/done_24"
-        android:layout_alignParentEnd="true">
+        android:layout_alignParentEnd="true"
+        android:contentDescription="done">
 
     </ImageButton>
 
@@ -45,7 +47,9 @@
             android:layout_height="45dp"
             android:src="@drawable/redo_24">
 
-        </ImageButton> <ImageButton
+        </ImageButton>
+
+        <ImageButton
         android:id="@+id/delete_btn"
         android:layout_width="45dp"
         android:layout_height="45dp"
@@ -57,3 +61,4 @@
 
 
 </RelativeLayout>
+

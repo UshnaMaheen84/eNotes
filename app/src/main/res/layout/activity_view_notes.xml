@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Text_note"
     android:background="@color/grey"
-    >
+    tools:context=".Text_note">
 
     <include
         android:id="@+id/included"
@@ -32,9 +30,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="5dp"
-            android:hint="Title"
-            android:focusableInTouchMode="false"
             android:backgroundTintMode="multiply"
+            android:focusableInTouchMode="false"
+            android:hint="Title"
             android:padding="1dp"
             android:textColor="@color/black"
             android:textColorHint="@color/black"
@@ -46,13 +44,14 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card2"
-        android:layout_below="@id/card1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:elevation="10dp"
+        android:layout_below="@id/card1"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginBottom="12dp">
+        android:layout_marginBottom="12dp"
+        android:elevation="10dp">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -110,30 +109,28 @@
             </ScrollView>
 
 
-
             <Button
                 android:id="@+id/done"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="done"
+                android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
-                android:layout_alignParentEnd="true">
+                android:text="done">
 
             </Button>
+
             <Button
                 android:id="@+id/update"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Update"
+                android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
-                android:layout_alignParentEnd="true">
+                android:text="Update">
 
             </Button>
 
 
-
         </RelativeLayout>
-
 
 
     </androidx.cardview.widget.CardView>

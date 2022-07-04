@@ -17,7 +17,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.provider.OpenableColumns
-import android.util.Base64
 import android.util.Log
 import android.widget.*
 import androidx.activity.result.contract.ActivityResultContracts
@@ -38,6 +37,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.madrapps.pikolo.ColorPicker
 import com.madrapps.pikolo.listeners.SimpleColorSelectionListener
 import com.redhoodhan.draw.DrawView
+import kotlinx.android.synthetic.main.activity_text_note.*
+import kotlinx.android.synthetic.main.dialog_draw.*
 import kotlinx.android.synthetic.main.dialog_draw.view.*
 import java.io.ByteArrayOutputStream
 import java.io.IOException
@@ -155,9 +156,7 @@ class Text_note : AppCompatActivity() {
 
         }
 
-        content.setTextSize(txtsize)
         text_title.setTypeface(typeface)
-        content.setTypeface(typeface)
 
         var ooo: String = ""
         mybookmrk.setOnClickListener {
@@ -176,28 +175,28 @@ class Text_note : AppCompatActivity() {
             val blue = view.findViewById<LinearLayout>(R.id.bookmrk_Travel)
             blue.setOnClickListener() {
                 mAlertDialog.dismiss()
-                bookmrk.setImageResource(R.drawable.bookmark_blue)
+                mybookmrk.setImageResource(R.drawable.bookmark_blue)
             }
 
             val green = view.findViewById<LinearLayout>(R.id.bookmrk_personal)
             green.setOnClickListener {
                 mAlertDialog.dismiss()
-                bookmrk.setImageResource(R.drawable.bookmark_grren)
+                mybookmrk.setImageResource(R.drawable.bookmark_grren)
             }
             val yellow = view.findViewById<LinearLayout>(R.id.bookmrk_life)
             yellow.setOnClickListener {
                 mAlertDialog.dismiss()
-                bookmrk.setImageResource(R.drawable.bookmark_yellow)
+                mybookmrk.setImageResource(R.drawable.bookmark_yellow)
             }
             val orange = view.findViewById<LinearLayout>(R.id.bookmrk_birthday)
             orange.setOnClickListener {
                 mAlertDialog.dismiss()
-                bookmrk.setImageResource(R.drawable.bookmark_orage)
+                mybookmrk.setImageResource(R.drawable.bookmark_orage)
             }
             val untag = view.findViewById<LinearLayout>(R.id.bookmrk_untag)
             untag.setOnClickListener {
                 mAlertDialog.dismiss()
-                bookmrk.setImageResource(R.drawable.bookmark_border_24)
+                mybookmrk.setImageResource(R.drawable.bookmark_border_24)
             }
         }
 
@@ -213,7 +212,7 @@ class Text_note : AppCompatActivity() {
                 mAlertDialog.dismiss()
                 font = R.font.comfortaa_bold
                 typeface = ResourcesCompat.getFont(this, font)
-                content.setTypeface(typeface)
+                text_context.setTypeface(typeface)
                 text_title.setTypeface(typeface)
 
             }
@@ -251,7 +250,7 @@ class Text_note : AppCompatActivity() {
                 mAlertDialog.dismiss()
                 font = R.font.dancing_script_bold
                 typeface = ResourcesCompat.getFont(this, font)
-                content.setTypeface(typeface)
+                text_context.setTypeface(typeface)
                 text_title.setTypeface(typeface)
 
 
@@ -261,7 +260,7 @@ class Text_note : AppCompatActivity() {
                 mAlertDialog.dismiss()
                 font = R.font.dancing_script_med
                 typeface = ResourcesCompat.getFont(this, font)
-                content.setTypeface(typeface)
+                text_context.setTypeface(typeface)
                 text_title.setTypeface(typeface)
 
             }
@@ -270,7 +269,7 @@ class Text_note : AppCompatActivity() {
                 mAlertDialog.dismiss()
                 font = R.font.dancing_script_reg
                 typeface = ResourcesCompat.getFont(this, font)
-                content.setTypeface(typeface)
+                text_context.setTypeface(typeface)
                 text_title.setTypeface(typeface)
 
             }
@@ -279,7 +278,7 @@ class Text_note : AppCompatActivity() {
                 mAlertDialog.dismiss()
                 font = R.font.gotham_bold
                 typeface = ResourcesCompat.getFont(this, font)
-                content.setTypeface(typeface)
+                text_context.setTypeface(typeface)
                 text_title.setTypeface(typeface)
 
             }
@@ -288,7 +287,7 @@ class Text_note : AppCompatActivity() {
                 mAlertDialog.dismiss()
                 font = R.font.comfortaa_medium
                 typeface = ResourcesCompat.getFont(this, font)
-                content.setTypeface(typeface)
+                text_context.setTypeface(typeface)
                 text_title.setTypeface(typeface)
 
             }
@@ -297,7 +296,7 @@ class Text_note : AppCompatActivity() {
                 mAlertDialog.dismiss()
                 font = R.font.gotham_medium_italic
                 typeface = ResourcesCompat.getFont(this, font)
-                content.setTypeface(typeface)
+                text_context.setTypeface(typeface)
                 text_title.setTypeface(typeface)
 
             }
@@ -306,7 +305,7 @@ class Text_note : AppCompatActivity() {
                 mAlertDialog.dismiss()
                 font = R.font.lato_bold
                 typeface = ResourcesCompat.getFont(this, font)
-                content.setTypeface(typeface)
+                text_context.setTypeface(typeface)
                 text_title.setTypeface(typeface)
 
             }
@@ -315,7 +314,7 @@ class Text_note : AppCompatActivity() {
                 mAlertDialog.dismiss()
                 font = R.font.lato_italic
                 typeface = ResourcesCompat.getFont(this, font)
-                content.setTypeface(typeface)
+                text_context.setTypeface(typeface)
                 text_title.setTypeface(typeface)
 
             }
@@ -324,7 +323,7 @@ class Text_note : AppCompatActivity() {
                 mAlertDialog.dismiss()
                 font = R.font.lato_reg
                 typeface = ResourcesCompat.getFont(this, font)
-                content.setTypeface(typeface)
+                text_context.setTypeface(typeface)
                 text_title.setTypeface(typeface)
 
             }
@@ -333,7 +332,7 @@ class Text_note : AppCompatActivity() {
                 mAlertDialog.dismiss()
                 font = R.font.montserrat_bold
                 typeface = ResourcesCompat.getFont(this, font)
-                content.setTypeface(typeface)
+                text_context.setTypeface(typeface)
                 text_title.setTypeface(typeface)
 
             }
@@ -342,7 +341,7 @@ class Text_note : AppCompatActivity() {
                 mAlertDialog.dismiss()
                 font = R.font.montserrat_italic
                 typeface = ResourcesCompat.getFont(this, font)
-                content.setTypeface(typeface)
+                text_context.setTypeface(typeface)
                 text_title.setTypeface(typeface)
 
             }
@@ -351,7 +350,7 @@ class Text_note : AppCompatActivity() {
                 mAlertDialog.dismiss()
                 font = R.font.montserrat_reg
                 typeface = ResourcesCompat.getFont(this, font)
-                content.setTypeface(typeface)
+                text_context.setTypeface(typeface)
                 text_title.setTypeface(typeface)
 
             }
@@ -532,7 +531,7 @@ class Text_note : AppCompatActivity() {
         }
 
         // for file upload
-        val fileupload = findViewById<ImageButton>(R.id.fileupload)
+//        val fileupload = findViewById<ImageButton>(R.id.fileupload)
         val file_Name = ArrayList<String>()
         val fileUriList = ArrayList<Uri>()
         val file_recyclerview = findViewById<RecyclerView>(R.id.file_attach)
@@ -560,16 +559,16 @@ class Text_note : AppCompatActivity() {
             val redo = view.findViewById<ImageButton>(R.id.redo_btn)
             val delete = view.findViewById<ImageButton>(R.id.delete_btn)
 
-            undo.setOnClickListener {
+            undo_btn.setOnClickListener {
                 drawingView.undo()
             }
-            redo.setOnClickListener {
+            redo_btn.setOnClickListener {
                 drawingView.redo()
             }
             delete.setOnClickListener {
                 drawingView.clearCanvas(true)
             }
-            done.setOnClickListener {
+            done_btn.setOnClickListener {
                 mAlertDialog.dismiss()
                 var myUri = getImageUri(this@Text_note, drawingView.drawing_view.saveAsBitmap())
                 //val getit : String =
@@ -599,68 +598,147 @@ class Text_note : AppCompatActivity() {
             }
 
 
-        }
-
-        fun getFileName(uri: Uri?): String {
-            result = null.toString()
-            if (uri != null) {
-                if (uri.scheme == "content") {
-                    val cursor = contentResolver.query(uri, null, null, null, null)
-                    try {
-                        if (cursor != null && cursor.moveToFirst()) {
-                            result =
-                                cursor.getString(cursor.getColumnIndexOrThrow(OpenableColumns.DISPLAY_NAME))
+            fun getFileName(uri: Uri?): String {
+                result = null.toString()
+                if (uri != null) {
+                    if (uri.scheme == "content") {
+                        val cursor = contentResolver.query(uri, null, null, null, null)
+                        try {
+                            if (cursor != null && cursor.moveToFirst()) {
+                                result =
+                                    cursor.getString(cursor.getColumnIndexOrThrow(OpenableColumns.DISPLAY_NAME))
+                            }
+                        } finally {
+                            cursor!!.close()
                         }
-                    } finally {
-                        cursor!!.close()
                     }
                 }
-            }
-            if (result == null) {
-                if (uri != null) {
-                    result = uri.path.toString()
+                if (result == null) {
+                    if (uri != null) {
+                        result = uri.path.toString()
+                    }
+                    val cut: Int = result.lastIndexOf('/')
+                    if (cut != -1) {
+                        result = result.substring(cut + 1)
+                    }
                 }
-                val cut: Int = result.lastIndexOf('/')
-                if (cut != -1) {
-                    result = result.substring(cut + 1)
-                }
+                return result
             }
-            return result
-        }
 
 
 // Receiver
-        val getFileResult =
-            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            val getFileResult =
+                registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
 
-                if (it.resultCode == RESULT_OK) {
-                    Log.e("success3", "succ")
-                    if (it.data?.data != null) {
+                    if (it.resultCode == RESULT_OK) {
+                        Log.e("success3", "succ")
+                        if (it.data?.data != null) {
 
-                        fileUri = Uri.parse(it.data!!.data.toString())
-                        fileUriList.add(fileUri)
-                        fileName = getFileName(fileUri)
-                        Log.e("name", fileName)
-                        file_Name.add(fileName)
-                        file_adapter.notifyDataSetChanged()
-
-
-                    }
-
-                    if (it.data?.clipData != null) {
-
-                        val totalItemsSelected = it.data!!.clipData!!.itemCount
-                        for (i in 0 until totalItemsSelected) {
-                            Log.e("success2", "succ")
-
-                            fileUri = it.data!!.clipData!!.getItemAt(i).uri
+                            fileUri = Uri.parse(it.data!!.data.toString())
                             fileUriList.add(fileUri)
                             fileName = getFileName(fileUri)
                             Log.e("name", fileName)
                             file_Name.add(fileName)
-                            file_adapter.notifyItemInserted(i)
                             file_adapter.notifyDataSetChanged()
 
+
+                        }
+
+                        if (it.data?.clipData != null) {
+
+                            val totalItemsSelected = it.data!!.clipData!!.itemCount
+                            for (i in 0 until totalItemsSelected) {
+                                Log.e("success2", "succ")
+
+                                fileUri = it.data!!.clipData!!.getItemAt(i).uri
+                                fileUriList.add(fileUri)
+                                fileName = getFileName(fileUri)
+                                Log.e("name", fileName)
+                                file_Name.add(fileName)
+                                file_adapter.notifyItemInserted(i)
+                                file_adapter.notifyDataSetChanged()
+
+                            }
+                        }
+
+                    }
+
+                }
+
+            fileupload.setOnClickListener {
+
+                val intent2 = Intent(Intent.ACTION_OPEN_DOCUMENT)
+                intent2.setType("*/*")
+                intent2.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
+                //         intent2.putExtra(Intent.EXTRA_ALLOW_MULTIPLE,false)
+//
+                getFileResult.launch(intent2)
+            }
+
+            fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
+
+            fun fetchLocation() {
+
+                if (ActivityCompat.checkSelfPermission(
+                        this,
+                        Manifest.permission.ACCESS_FINE_LOCATION
+                    )
+                    != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                        this,
+                        Manifest.permission.ACCESS_COARSE_LOCATION
+                    )
+                    != PackageManager.PERMISSION_GRANTED
+                ) {
+                    ActivityCompat.requestPermissions(
+                        this,
+                        arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                        REQUEST_CODE
+                    )
+                    return
+                }
+
+                val task = fusedLocationProviderClient!!.lastLocation
+                task.addOnSuccessListener { location ->
+                    if (location != null) {
+                        currentLocation = location
+
+                        val latLng = LatLng(currentLocation!!.latitude, currentLocation!!.longitude)
+                        my_loc = latLng.toString()
+
+
+                        ooo = my_loc
+                        val geocoder = Geocoder(this, Locale.getDefault())
+                        val addresses: List<Address> = geocoder.getFromLocation(
+                            currentLocation!!.latitude,
+                            currentLocation!!.longitude,
+                            1
+                        )
+                        if (addresses.size > 0) {
+                            currentloctn.setText(addresses[0].getAddressLine(0))
+                            addressline = addresses[0].getAddressLine(0)
+                            Log.e("location_inside", addresses[0].adminArea)
+                            Log.e("location_inside2", addresses[0].locality)
+                            Log.e("location_inside3", addresses[0].countryName)
+                            Log.e("location_inside4", addresses[0].getAddressLine(0))
+                            Log.e("location_inside5", addresses[0].subAdminArea)
+                            Log.e("location_inside6", addresses[0].subLocality)
+
+                        }
+                        Log.e("location_inside", ooo)
+
+                        currentloctn.setOnClickListener {
+                            val t = Toast.makeText(this, my_loc, Toast.LENGTH_SHORT)
+                            t.show()
+                            val strUri =
+                                "http://maps.google.com/maps?q=loc:" + currentLocation!!.latitude.toString() + "," + currentLocation!!.longitude.toString() + " (" + addressline + ")"
+                            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(strUri))
+
+                            intent.setClassName(
+                                "com.google.android.apps.maps",
+                                "com.google.android.maps.MapsActivity"
+                            )
+
+                            startActivity(intent)
                         }
                     }
 
@@ -668,69 +746,55 @@ class Text_note : AppCompatActivity() {
 
             }
 
-        fileupload.setOnClickListener {
+            fun fetchLocationSearch(mysearch: String) {
 
-            val intent2 = Intent(Intent.ACTION_OPEN_DOCUMENT)
-            intent2.setType("*/*")
-            intent2.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
-            //         intent2.putExtra(Intent.EXTRA_ALLOW_MULTIPLE,false)
-//
-            getFileResult.launch(intent2)
-        }
-
-        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
-
-        fun fetchLocation() {
-
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                    this,
-                    Manifest.permission.ACCESS_COARSE_LOCATION
-                )
-                != PackageManager.PERMISSION_GRANTED
-            ) {
-                ActivityCompat.requestPermissions(
-                    this,
-                    arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-                    REQUEST_CODE
-                )
-                return
-            }
-
-            val task = fusedLocationProviderClient!!.lastLocation
-            task.addOnSuccessListener { location ->
-                if (location != null) {
-                    currentLocation = location
-
-                    val latLng = LatLng(currentLocation!!.latitude, currentLocation!!.longitude)
-                    my_loc = latLng.toString()
-
-
-                    ooo = my_loc
-                    val geocoder = Geocoder(this, Locale.getDefault())
-                    val addresses: List<Address> = geocoder.getFromLocation(
-                        currentLocation!!.latitude,
-                        currentLocation!!.longitude,
-                        1
+                if (ActivityCompat.checkSelfPermission(
+                        this,
+                        Manifest.permission.ACCESS_FINE_LOCATION
                     )
-                    if (addresses.size > 0) {
-                        currentloctn.setText(addresses[0].getAddressLine(0))
-                        addressline = addresses[0].getAddressLine(0)
-                        Log.e("location_inside", addresses[0].adminArea)
-                        Log.e("location_inside2", addresses[0].locality)
-                        Log.e("location_inside3", addresses[0].countryName)
-                        Log.e("location_inside4", addresses[0].getAddressLine(0))
-                        Log.e("location_inside5", addresses[0].subAdminArea)
-                        Log.e("location_inside6", addresses[0].subLocality)
+                    != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                        this,
+                        Manifest.permission.ACCESS_COARSE_LOCATION
+                    )
+                    != PackageManager.PERMISSION_GRANTED
+                ) {
+                    ActivityCompat.requestPermissions(
+                        this,
+                        arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                        REQUEST_CODE
+                    )
+                    return
+                }
+                currentloctn.setText(mysearch)
+                Log.e("mysrch", mysearch)
+                var addressList: List<Address>? = null
 
+                if (mysearch != null || mysearch != "") {
+
+
+                    val geocoder = Geocoder(this)
+                    try {
+                        addressList = geocoder.getFromLocationName(mysearch, 1)
+                    } catch (e: IOException) {
+                        Log.e("error1", e.message.toString())
                     }
-                    Log.e("location_inside", ooo)
+                    try {
+                        val address = addressList!![0]
+                        val latLng = LatLng(address.latitude, address.longitude)
+                        my_loc = latLng.toString()
+                        lat = address.latitude.toString()
+                        lng = address.longitude.toString()
+
+                    } catch (d: java.lang.Exception) {
+                        Log.e("error", d.message.toString())
+                    }
+
 
                     currentloctn.setOnClickListener {
                         val t = Toast.makeText(this, my_loc, Toast.LENGTH_SHORT)
                         t.show()
                         val strUri =
-                            "http://maps.google.com/maps?q=loc:" + currentLocation!!.latitude.toString() + "," + currentLocation!!.longitude.toString() + " (" + addressline + ")"
+                            "http://maps.google.com/maps?q=loc:" + lat + "," + lng + " (" + addressline + ")"
                         val intent = Intent(Intent.ACTION_VIEW, Uri.parse(strUri))
 
                         intent.setClassName(
@@ -740,119 +804,61 @@ class Text_note : AppCompatActivity() {
 
                         startActivity(intent)
                     }
+
+                }
+            }
+
+            findViewById<ImageButton>(R.id.my_location).setOnClickListener {
+                val view = layoutInflater.inflate(R.layout.alertdialog_cocation, null)
+                val mBuilder = AlertDialog.Builder(this)
+                    .setView(view)
+                    .setTitle("Search Location")
+                val mAlertDialog = mBuilder.show()
+                val use_current_location = view.findViewById<TextView>(R.id.my_current_location)
+                val search_location = view.findViewById<EditText>(R.id.seach_loc)
+                val search = view.findViewById<Button>(R.id.seach_btn)
+
+                use_current_location.setOnClickListener {
+                    mAlertDialog.dismiss()
+                    fetchLocation()
+                }
+
+                search.setOnClickListener {
+                    mAlertDialog.dismiss()
+                    val mysearch: String = search_location.text.toString()
+                    Log.e("mysrch1", mysearch)
+
+                    fetchLocationSearch(mysearch)
+
                 }
 
             }
 
-        }
 
-        fun fetchLocationSearch(mysearch: String) {
+            done.setOnClickListener {
+                val title: String = text_title.text.toString()
+                val contnt: String = content.text.toString()
 
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                    this,
-                    Manifest.permission.ACCESS_COARSE_LOCATION
+                Log.e("clr bgg", bg_clr.toString() + " ")
+                Log.e("clr f", fontclr.toString() + " ")
+                Log.e("check2", returndate.toString() + " " + returndate2)
+
+                db.addNotes(
+                    text_title.text.toString(),
+                    content.text.toString(),
+                    txtsize.toString(),
+                    font.toString(),
+                    fontclr.toString(),
+                    bg_clr.toString(),
+                    addressline,
+                    file_Name
                 )
-                != PackageManager.PERMISSION_GRANTED
-            ) {
-                ActivityCompat.requestPermissions(
-                    this,
-                    arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-                    REQUEST_CODE
-                )
-                return
-            }
-            currentloctn.setText(mysearch)
-            Log.e("mysrch", mysearch)
-            var addressList: List<Address>? = null
 
-            if (mysearch != null || mysearch != "") {
-
-
-                val geocoder = Geocoder(this)
-                try {
-                    addressList = geocoder.getFromLocationName(mysearch, 1)
-                } catch (e: IOException) {
-                    Log.e("error1", e.message.toString())
-                }
-                try {
-                    val address = addressList!![0]
-                    val latLng = LatLng(address.latitude, address.longitude)
-                    my_loc = latLng.toString()
-                    lat = address.latitude.toString()
-                    lng = address.longitude.toString()
-
-                } catch (d: java.lang.Exception) {
-                    Log.e("error", d.message.toString())
-                }
-
-
-                currentloctn.setOnClickListener {
-                    val t = Toast.makeText(this, my_loc, Toast.LENGTH_SHORT)
-                    t.show()
-                    val strUri =
-                        "http://maps.google.com/maps?q=loc:" + lat + "," + lng + " (" + addressline + ")"
-                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(strUri))
-
-                    intent.setClassName(
-                        "com.google.android.apps.maps",
-                        "com.google.android.maps.MapsActivity"
-                    )
-
-                    startActivity(intent)
-                }
-
-            }
-        }
-
-        findViewById<ImageButton>(R.id.my_location).setOnClickListener {
-            val view = layoutInflater.inflate(R.layout.alertdialog_cocation, null)
-            val mBuilder = AlertDialog.Builder(this)
-                .setView(view)
-                .setTitle("Search Location")
-            val mAlertDialog = mBuilder.show()
-            val use_current_location = view.findViewById<TextView>(R.id.my_current_location)
-            val search_location = view.findViewById<EditText>(R.id.seach_loc)
-            val search = view.findViewById<Button>(R.id.seach_btn)
-
-            use_current_location.setOnClickListener {
-                mAlertDialog.dismiss()
-                fetchLocation()
-            }
-
-            search.setOnClickListener {
-                mAlertDialog.dismiss()
-                val mysearch: String = search_location.text.toString()
-                Log.e("mysrch1", mysearch)
-
-                fetchLocationSearch(mysearch)
-
+                finish()
             }
 
         }
 
-
-        done.setOnClickListener {
-            val title: String = text_title.text.toString()
-            val contnt: String = content.text.toString()
-
-            Log.e("clr bgg", bg_clr.toString() + " ")
-            Log.e("clr f", fontclr.toString() + " ")
-            Log.e("check2", returndate.toString() + " " + returndate2)
-
-            db.addNotes(
-                text_title.text.toString(),
-                content.text.toString(),
-                txtsize.toString(),
-                font.toString(),
-                fontclr.toString(),
-                bg_clr.toString(),
-                addressline,
-                file_Name
-            )
-
-            finish()
-        }
 
     }
 
@@ -860,7 +866,12 @@ class Text_note : AppCompatActivity() {
         val bytes = ByteArrayOutputStream()
         inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
         val path =
-            MediaStore.Images.Media.insertImage(inContext.contentResolver, inImage, "Title", null)
+            MediaStore.Images.Media.insertImage(
+                inContext.contentResolver,
+                inImage,
+                "Title",
+                null
+            )
         return Uri.parse(path)
     }
 
@@ -908,5 +919,4 @@ class Text_note : AppCompatActivity() {
             null
         }
     }
-
 }

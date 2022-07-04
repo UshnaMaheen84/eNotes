@@ -35,6 +35,14 @@
         <entry key="..\:/Users/Ushna/AndroidStudioProjects/eNotes/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Ushna/AndroidStudioProjects/eNotes/app/src/main/res/layout/activity_text_note.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Ushna/AndroidStudioProjects/eNotes/app/src/main/res/layout/dialog_draw.xml" value="0.25416666666666665" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_signup.xml" value="0.1793478260869565" />
+        <entry key="app/src/main/res/layout/activity_text_note.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/appbar_create_note.xml" value="0.1793478260869565" />
+        <entry key="app/src/main/res/layout/dialog_draw.xml" value="0.10462962962962963" />
+        <entry key="app/src/main/res/layout/file_attach.xml" value="0.12335359675785208" />
+        <entry key="app/src/main/res/layout/itemview_show_notes.xml" value="0.25" />
       </map>
     </option>
   </component>

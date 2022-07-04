@@ -28,6 +28,7 @@ class AdapterFile_attach(
         val name: String = file_name.get(position)
         holder.image.setImageURI(uri)
         holder.tv.setText(name)
+        holder.tv.visibility = View.GONE
         Log.e("img", uri.toString())
     }
 

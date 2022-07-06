@@ -16,6 +16,7 @@ import android.location.Location
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.provider.MediaStore
 import android.provider.OpenableColumns
 import android.util.Base64
 import android.util.Log
@@ -38,6 +39,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.madrapps.pikolo.ColorPicker
 import com.madrapps.pikolo.listeners.SimpleColorSelectionListener
 import com.redhoodhan.draw.DrawView
+import kotlinx.android.synthetic.main.dialog_draw.view.*
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.IOException
@@ -64,7 +66,7 @@ class Text_note : AppCompatActivity() {
     var fontclr: Int = R.color.black
     var txtsize: Float = 16.0F
     var font: Int = R.font.roboto_regular
-
+    var fontstring= ""
     var my_loc :String=""
     var addressline :String=""
     var lat: String=""
@@ -93,7 +95,7 @@ class Text_note : AppCompatActivity() {
         val done = findViewById<Button>(R.id.done)
         val content = findViewById<EditText>(R.id.text_context)
         val text_title = findViewById<EditText>(R.id.text_title)
-        val currentloctn=  findViewById<TextView>(R.id.location)
+        val tv_currentloctn=  findViewById<TextView>(R.id.location)
         val bgcolor = findViewById<ImageButton>(R.id.bgcolor)
         val textfont = findViewById<ImageButton>(R.id.textfont)
         val textSize = findViewById<ImageButton>(R.id.textsize)
@@ -212,6 +214,7 @@ class Text_note : AppCompatActivity() {
             comforta_bold.setOnClickListener {
                 mAlertDialog.dismiss()
                 font= R.font.comfortaa_bold
+                fontstring= "comforta_bold"
                 typeface = ResourcesCompat.getFont(this, font)
                 content.setTypeface(typeface)
                 text_title.setTypeface(typeface)
@@ -222,6 +225,7 @@ class Text_note : AppCompatActivity() {
             comforta_light.setOnClickListener {
                 mAlertDialog.dismiss()
                 font= R.font.comfortaa_light
+                fontstring= "comfortaa_light"
                 typeface = ResourcesCompat.getFont(this, font)
                 content.setTypeface(typeface)
                 text_title.setTypeface(typeface)
@@ -232,6 +236,8 @@ class Text_note : AppCompatActivity() {
             comforta_meddium.setOnClickListener {
                 mAlertDialog.dismiss()
                 font= R.font.comfortaa_medium
+
+                fontstring= "comfortaa_meddium"
                 typeface = ResourcesCompat.getFont(this, font)
                 content.setTypeface(typeface)
                 text_title.setTypeface(typeface)
@@ -240,7 +246,8 @@ class Text_note : AppCompatActivity() {
             val comforta_reg = view.findViewById<TextView>(R.id.comfortaa_reg)
             comforta_reg.setOnClickListener {
                 mAlertDialog.dismiss()
-                font= R.font.comfortaa_bold
+                font= R.font.comfortaa_regular
+                fontstring= "comfortaa_regular"
                 typeface = ResourcesCompat.getFont(this, font)
                 content.setTypeface(typeface)
                 text_title.setTypeface(typeface)
@@ -250,6 +257,7 @@ class Text_note : AppCompatActivity() {
             dancing_bold.setOnClickListener {
                 mAlertDialog.dismiss()
                 font= R.font.dancing_script_bold
+                fontstring= "dancing_script_bold"
                 typeface = ResourcesCompat.getFont(this, font)
                 content.setTypeface(typeface)
                 text_title.setTypeface(typeface)
@@ -260,6 +268,7 @@ class Text_note : AppCompatActivity() {
             dancing_med.setOnClickListener {
                 mAlertDialog.dismiss()
                 font= R.font.dancing_script_med
+                fontstring= "dancing_script_med"
                 typeface = ResourcesCompat.getFont(this, font)
                 content.setTypeface(typeface)
                 text_title.setTypeface(typeface)
@@ -269,6 +278,7 @@ class Text_note : AppCompatActivity() {
             dancing_reg.setOnClickListener {
                 mAlertDialog.dismiss()
                 font= R.font.dancing_script_reg
+                fontstring= "dancing_script_reg"
                 typeface = ResourcesCompat.getFont(this, font)
                 content.setTypeface(typeface)
                 text_title.setTypeface(typeface)
@@ -278,6 +288,7 @@ class Text_note : AppCompatActivity() {
             gotham_bold.setOnClickListener {
                 mAlertDialog.dismiss()
                 font= R.font.gotham_bold
+                fontstring= "gotham_bold"
                 typeface = ResourcesCompat.getFont(this, font)
                 content.setTypeface(typeface)
                 text_title.setTypeface(typeface)
@@ -286,7 +297,8 @@ class Text_note : AppCompatActivity() {
             val gotham_med = view.findViewById<TextView>(R.id.gotham_medium)
             gotham_med.setOnClickListener {
                 mAlertDialog.dismiss()
-                font= R.font.comfortaa_medium
+                font= R.font.gotham_medium
+                fontstring= "gotham_medium"
                 typeface = ResourcesCompat.getFont(this, font)
                 content.setTypeface(typeface)
                 text_title.setTypeface(typeface)
@@ -296,6 +308,7 @@ class Text_note : AppCompatActivity() {
             gotham_italic.setOnClickListener {
                 mAlertDialog.dismiss()
                 font= R.font.gotham_medium_italic
+                fontstring= "gotham_medium_italic"
                 typeface = ResourcesCompat.getFont(this, font)
                 content.setTypeface(typeface)
                 text_title.setTypeface(typeface)
@@ -305,6 +318,7 @@ class Text_note : AppCompatActivity() {
             lato_bold.setOnClickListener {
                 mAlertDialog.dismiss()
                 font= R.font.lato_bold
+                fontstring= "lato_bold"
                 typeface = ResourcesCompat.getFont(this, font)
                 content.setTypeface(typeface)
                 text_title.setTypeface(typeface)
@@ -314,6 +328,7 @@ class Text_note : AppCompatActivity() {
             lato_italic.setOnClickListener {
                 mAlertDialog.dismiss()
                 font= R.font.lato_italic
+                fontstring= "lato_italic"
                 typeface = ResourcesCompat.getFont(this, font)
                 content.setTypeface(typeface)
                 text_title.setTypeface(typeface)
@@ -323,6 +338,7 @@ class Text_note : AppCompatActivity() {
             lato_reg.setOnClickListener {
                 mAlertDialog.dismiss()
                 font= R.font.lato_reg
+                fontstring= "lato_reg"
                 typeface = ResourcesCompat.getFont(this, font)
                 content.setTypeface(typeface)
                 text_title.setTypeface(typeface)
@@ -332,6 +348,7 @@ class Text_note : AppCompatActivity() {
             montserrat_bold.setOnClickListener {
                 mAlertDialog.dismiss()
                 font= R.font.montserrat_bold
+                fontstring="montserrat_bold"
                 typeface = ResourcesCompat.getFont(this, font)
                 content.setTypeface(typeface)
                 text_title.setTypeface(typeface)
@@ -341,6 +358,7 @@ class Text_note : AppCompatActivity() {
             montserrat_italic.setOnClickListener {
                 mAlertDialog.dismiss()
                 font= R.font.montserrat_italic
+                fontstring= "montserrat_italic"
                 typeface = ResourcesCompat.getFont(this, font)
                 content.setTypeface(typeface)
                 text_title.setTypeface(typeface)
@@ -350,6 +368,7 @@ class Text_note : AppCompatActivity() {
             montserrat_reg.setOnClickListener {
                 mAlertDialog.dismiss()
                 font= R.font.montserrat_reg
+                fontstring= "montserrat_reg"
                 typeface = ResourcesCompat.getFont(this, font)
                 content.setTypeface(typeface)
                 text_title.setTypeface(typeface)
@@ -359,6 +378,7 @@ class Text_note : AppCompatActivity() {
             poppins_bold.setOnClickListener {
                 mAlertDialog.dismiss()
                 font= R.font.poppins_bold
+                fontstring="poppins_bold"
                 typeface = ResourcesCompat.getFont(this, font)
                 content.setTypeface(typeface)
                 text_title.setTypeface(typeface)
@@ -368,6 +388,8 @@ class Text_note : AppCompatActivity() {
             poppins_italic.setOnClickListener {
                 mAlertDialog.dismiss()
                 font= R.font.poppins_italic
+                fontstring= "poppins_italic"
+
                 typeface = ResourcesCompat.getFont(this, font)
                 content.setTypeface(typeface)
                 text_title.setTypeface(typeface)
@@ -377,6 +399,8 @@ class Text_note : AppCompatActivity() {
             poppins_reg.setOnClickListener {
                 mAlertDialog.dismiss()
                 font= R.font.poppins_regular
+                fontstring= "poppins_regular"
+
                 typeface = ResourcesCompat.getFont(this, font)
                 content.setTypeface(typeface)
                 text_title.setTypeface(typeface)
@@ -386,6 +410,7 @@ class Text_note : AppCompatActivity() {
             roboto_bold.setOnClickListener {
                 mAlertDialog.dismiss()
                 font= R.font.roboto_bold
+                fontstring= "roboto_bold"
                 typeface = ResourcesCompat.getFont(this, font)
                 content.setTypeface(typeface)
                 text_title.setTypeface(typeface)
@@ -395,6 +420,7 @@ class Text_note : AppCompatActivity() {
             roboto_italic.setOnClickListener {
                 mAlertDialog.dismiss()
                 font= R.font.roboto_italic
+                fontstring= "roboto_italic"
                 typeface = ResourcesCompat.getFont(this, font)
                 content.setTypeface(typeface)
                 text_title.setTypeface(typeface)
@@ -404,6 +430,7 @@ class Text_note : AppCompatActivity() {
             roboto_reg.setOnClickListener {
                 mAlertDialog.dismiss()
                 font= R.font.roboto_regular
+                fontstring= "roboto_regular"
                 typeface = ResourcesCompat.getFont(this, font)
                 content.setTypeface(typeface)
                 text_title.setTypeface(typeface)
@@ -413,6 +440,7 @@ class Text_note : AppCompatActivity() {
             pacifico.setOnClickListener {
                 mAlertDialog.dismiss()
                 font= R.font.pacifico
+                fontstring= "pacifico"
                 typeface = ResourcesCompat.getFont(this, font)
                 content.setTypeface(typeface)
                 text_title.setTypeface(typeface)
@@ -422,6 +450,7 @@ class Text_note : AppCompatActivity() {
             satisfy.setOnClickListener {
                 mAlertDialog.dismiss()
                 font= R.font.satisfy
+                fontstring= "satisfy"
                 typeface = ResourcesCompat.getFont(this, font)
                 content.setTypeface(typeface)
                 text_title.setTypeface(typeface)
@@ -431,6 +460,7 @@ class Text_note : AppCompatActivity() {
             shadows.setOnClickListener {
                 mAlertDialog.dismiss()
                 font= R.font.shadows_into_light
+                fontstring= "shadows_into_light"
                 typeface = ResourcesCompat.getFont(this, font)
                 content.setTypeface(typeface)
                 text_title.setTypeface(typeface)
@@ -440,6 +470,7 @@ class Text_note : AppCompatActivity() {
             waver.setOnClickListener {
                 mAlertDialog.dismiss()
                 font= R.font.waver
+                fontstring= "waver"
                 typeface = ResourcesCompat.getFont(this, font)
                 content.setTypeface(typeface)
                 text_title.setTypeface(typeface)
@@ -571,25 +602,17 @@ class Text_note : AppCompatActivity() {
             }
             done.setOnClickListener {
                 mAlertDialog.dismiss()
-                val getit : String = drawingView.id.toString()
-                file_Name.add(getit.toString())
+                val myUri = getImageUri(this@Text_note, drawingView.drawing_view.saveAsBitmap())
+                //val getit : String =
+                myUri?.let {
+                    fileUriList.add(it)
+                    file_Name.add(it.toString())
+                }
                 drawingView.isSaveEnabled
                 file_adapter.notifyDataSetChanged()
-//                val bitmap = drawingView.saveAsBitmap()
-//                val uri= Uri.parse(bitmap.toString())
 
                 //   Log.e("getit",uri.toString())
 
-
-                val bitmap = Bitmap.createBitmap(drawingView.saveAsBitmap())
-                val stream = ByteArrayOutputStream()
-                bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
-                val byteArray: ByteArray = stream.toByteArray()
-
-                val encoded: String = Base64.encodeToString(byteArray, Base64.DEFAULT)
-
-                imageView.setImageBitmap(getBitMap(encoded))
-                //  fileUriList.add(uri)
 
 
             }
@@ -667,7 +690,7 @@ class Text_note : AppCompatActivity() {
         fileupload.setOnClickListener {
 
             val intent2 = Intent(Intent.ACTION_OPEN_DOCUMENT)
-            intent2.setType("*/*")
+            intent2.setType("image/*")
             intent2.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
             //         intent2.putExtra(Intent.EXTRA_ALLOW_MULTIPLE,false)
 //
@@ -699,7 +722,7 @@ class Text_note : AppCompatActivity() {
                     val geocoder = Geocoder(this, Locale.getDefault())
                     val addresses: List<Address> = geocoder.getFromLocation(currentLocation!!.latitude, currentLocation!!.longitude, 1)
                     if (addresses.size > 0) {
-                        currentloctn.setText(addresses[0].getAddressLine(0))
+                        tv_currentloctn.setText(addresses[0].getAddressLine(0))
                         addressline= addresses[0].getAddressLine(0)
                         Log.e("location_inside",addresses[0].adminArea)
                         Log.e("location_inside2",addresses[0].locality)
@@ -711,7 +734,7 @@ class Text_note : AppCompatActivity() {
                     }
                     Log.e("location_inside",ooo)
 
-                    currentloctn.setOnClickListener {
+                    tv_currentloctn.setOnClickListener {
                         val t = Toast.makeText(this, my_loc, Toast.LENGTH_SHORT)
                         t.show()
                         val strUri =
@@ -739,7 +762,8 @@ class Text_note : AppCompatActivity() {
                 ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), REQUEST_CODE)
                 return
             }
-            currentloctn.setText(mysearch)
+            tv_currentloctn.setText(mysearch)
+            addressline= mysearch
             Log.e("mysrch",mysearch)
             var addressList: List<Address>? = null
 
@@ -764,7 +788,7 @@ class Text_note : AppCompatActivity() {
                 }
 
 
-                currentloctn.setOnClickListener {
+                tv_currentloctn.setOnClickListener {
                     val t = Toast.makeText(this, my_loc, Toast.LENGTH_SHORT)
                     t.show()
                     val strUri =
@@ -817,15 +841,33 @@ class Text_note : AppCompatActivity() {
             Log.e("clr f",fontclr.toString()+" ")
             Log.e("check2",returndate.toString()+" "+ returndate2)
 
-            val abc:String= my_loc
-
-            db.addNotes(text_title.text.toString(), content.text.toString(),
-                txtsize.toString() , font.toString(), fontclr.toString(), bg_clr.toString())
-
+            db.addNotes(
+                text_title.text.toString(),
+                content.text.toString(),
+                txtsize.toString(),
+                fontstring.toString(),
+                fontclr.toString(),
+                bg_clr.toString(),
+                addressline,
+                file_Name
+            )
 
             finish()
         }
 
+    }
+
+    fun getImageUri(inContext: Context, inImage: Bitmap): Uri? {
+        val bytes = ByteArrayOutputStream()
+        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
+        val path =
+            MediaStore.Images.Media.insertImage(
+                inContext.contentResolver,
+                inImage,
+                "Title",
+                null
+            )
+        return Uri.parse(path)
     }
     private fun setAlarm() {
         val manager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
@@ -851,20 +893,6 @@ class Text_note : AppCompatActivity() {
         Log.e("success", reminderDateTimeInMilliseconds.toString())
 
         manager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, (reminderDateTimeInMilliseconds), pendingIntent)
-    }
-
-    fun getBitMap(encodedString: String?): Bitmap? {
-        return try {
-            val decoder: java.util.Base64.Decoder = java.util.Base64.getDecoder()
-            val decoded = String(decoder.decode(encodedString))
-
-
-            val decodedString: ByteArray = decoded.toByteArray()
-            BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
-        } catch (e: Exception) {
-            e.message
-            null
-        }
     }
 
 }

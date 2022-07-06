@@ -8,14 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.cardview.widget.CardView
-import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.example.enotes.MainActivity
 import com.example.enotes.R
 import com.example.enotes.ViewNotes
-import com.example.enotes.models.Deleting
 import com.example.enotes.models.create_note
 
 class All_notes_adapter(val arrraylist: ArrayList<create_note>,val context: Context): RecyclerView.Adapter<All_notes_adapter.ViewHolder>(){
@@ -45,6 +41,7 @@ class All_notes_adapter(val arrraylist: ArrayList<create_note>,val context: Cont
             intent.putExtra("textclr",notes.text_clr)
             intent.putExtra("font",notes.text_font)
             intent.putExtra("bg",notes.bg_clr)
+            intent.putExtra("address", notes.address)
            context.startActivity (intent)
 
             Log.e("fontss", notes.bg_clr)

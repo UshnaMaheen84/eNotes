@@ -11,7 +11,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.enotes.R
 
-class AdapterFile_attach(val file_uri : List<Uri> ,val file_name: ArrayList<String>, context: Context) : RecyclerView.Adapter<AdapterFile_attach.ViewHolder>(){
+class AdapterFile_attach(
+    val file_uri : List<Uri> ,
+    val file_name: ArrayList<String>,
+    context: Context)
+    : RecyclerView.Adapter<AdapterFile_attach.ViewHolder>(){
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -25,7 +29,9 @@ class AdapterFile_attach(val file_uri : List<Uri> ,val file_name: ArrayList<Stri
         val name:String= file_name.get(position)
         holder.image.setImageURI(uri)
         holder.tv.setText(name)
-        Log.e("img",uri.toString())
+
+        holder.tv.visibility = View.GONE
+        Log.e("img", uri.toString())
     }
 
     override fun getItemCount()= file_uri.size

@@ -62,7 +62,6 @@ class Text_note : AppCompatActivity() {
 
     var currentLocation : Location? = null
     var fusedLocationProviderClient: FusedLocationProviderClient? = null
-    val REQUEST_CODE = 101
 
     lateinit var image_Uri: Uri
     lateinit var fileUri: Uri
@@ -79,6 +78,7 @@ class Text_note : AppCompatActivity() {
     var txtsize: Float = 16.0F
     var font: Int = R.font.roboto_regular
     var fontstring= ""
+    val REQUEST_CODE = 101
     var my_loc :String=""
     var addressline :String=""
     var lat: String=""
@@ -108,7 +108,6 @@ class Text_note : AppCompatActivity() {
 
         var typeface = ResourcesCompat.getFont(this, font)
 
-        val imageView= findViewById<ImageView>(R.id.image)
         val cardView = findViewById<CardView>(R.id.card2)
         val cardView1 = findViewById<CardView>(R.id.card1)
         val done = findViewById<Button>(R.id.done)
@@ -862,11 +861,12 @@ class Text_note : AppCompatActivity() {
 
             Log.e("clr bgg",bg_clr.toString()+" ")
             Log.e("clr f",fontclr.toString()+" ")
-            Log.e("check2",returndate.toString()+" "+ returndate2)
+            Log.e("check2",returndate+" "+ returndate2)
             Log.e("bookmarkss",bookmark)
             val sdf = SimpleDateFormat("dd/M/yyyy hh:mm:ss")
             val currentDate = sdf.format(Date())
 
+            val reminder_date= returndate+" "+ returndate2
             db.addNotes(
                 text_title.text.toString(),
                 content.text.toString(),
@@ -877,7 +877,8 @@ class Text_note : AppCompatActivity() {
                 addressline,
                 file_Name,
                 bookmark,
-                currentDate
+                currentDate,
+                reminder_date
             )
          //   uploadImageToServer()
 

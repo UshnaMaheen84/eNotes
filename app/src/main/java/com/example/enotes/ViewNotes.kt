@@ -1,23 +1,42 @@
 package com.example.enotes
 
+import android.Manifest
 import android.annotation.SuppressLint
+import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Color
+import android.location.Address
+import android.location.Geocoder
+import android.location.Location
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.EditText
-import android.widget.ImageButton
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
+import com.google.android.gms.maps.model.LatLng
 import kotlinx.android.synthetic.main.activity_view_notes.*
+import java.io.IOException
+import java.util.*
 
 class ViewNotes : AppCompatActivity() {
 
 
+    val REQUEST_CODE = 101
+    var my_loc :String=""
+    var addressline :String=""
+    var lat: String=""
+    var lng:String=""
+    var currentLocation : Location? = null
+    var fusedLocationProviderClient: FusedLocationProviderClient? = null
+    var updatedAddress= ""
 
     @SuppressLint("ResourceAsColor")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,9 +52,15 @@ class ViewNotes : AppCompatActivity() {
         val textsize = intent.extras!!.getString("textsize")
         val textclr = intent.extras!!.getString("textclr")
         val bgclr = intent.extras!!.getString("bg")
+        val reminder_date= intent.extras!!.getString("reminder_date")
 
+        view_reminders.setText("Reminder set for "+reminder_date)
         val address= intent.extras!!.getString("address")
         viewAddress.setText(address)
+        viewAddress.setOnClickListener {
+            fetchLocationSearch(address)
+
+        }
 // to update notes
         update.setOnClickListener {
             update.visibility = View.GONE
@@ -43,12 +68,41 @@ class ViewNotes : AppCompatActivity() {
 
             text_title.isFocusableInTouchMode =true
             text_context.isFocusableInTouchMode= true
+
+     edit_address.visibility= View.VISIBLE
         }
 
         view_done.setOnClickListener {
-            Toast.makeText(this, "updated", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "updated" +updatedAddress, Toast.LENGTH_SHORT).show()
 
             finish()
+        }
+
+        edit_address.setOnClickListener {
+
+            val view = layoutInflater.inflate(R.layout.alertdialog_cocation, null)
+            val mBuilder = AlertDialog.Builder(this)
+                .setView(view)
+                .setTitle("Search Location")
+            val mAlertDialog = mBuilder.show()
+            val use_current_location = view.findViewById<TextView>(R.id.my_current_location)
+            val search_location = view.findViewById<EditText>(R.id.seach_loc)
+            val search = view.findViewById<Button>(R.id.seach_btn)
+
+            use_current_location.setOnClickListener {
+                mAlertDialog.dismiss()
+                fetchLocation()
+            }
+
+            search.setOnClickListener {
+                mAlertDialog.dismiss()
+                val mysearch: String= search_location.text.toString()
+                Log.e("mysrch1",mysearch)
+
+                fetchLocationSearch(mysearch)
+
+            }
+
         }
 // to set fonts
         showFonts()
@@ -98,6 +152,59 @@ class ViewNotes : AppCompatActivity() {
 
         }
 
+
+
+    }
+    fun fetchLocationSearch(address: String?) {
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+            != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_COARSE_LOCATION)
+            != PackageManager.PERMISSION_GRANTED)
+        {
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), REQUEST_CODE)
+            return
+        }
+        var addressList: List<Address>? = null
+
+        if (address != null || address != "") {
+
+
+
+            val geocoder = Geocoder(this)
+            try {
+                addressList = geocoder.getFromLocationName(address, 1)
+            } catch (e: IOException) {
+                Log.e("error1", e.message.toString())
+            }
+            try {
+                val address = addressList!![0]
+                val latLng = LatLng(address.latitude, address.longitude)
+                my_loc = latLng.toString()
+                lat= address.latitude.toString()
+                lng= address.longitude.toString()
+
+            } catch (d: java.lang.Exception) {
+                Log.e("error", d.message.toString())
+            }
+
+
+            updatedAddress= address.toString()
+            viewAddress.setText(address)
+            viewAddress.setOnClickListener {
+                val strUri =
+                    "http://maps.google.com/maps?q=loc:" + lat+ "," + lng+ " (" + address + ")"
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(strUri))
+
+                intent.setClassName(
+                    "com.google.android.apps.maps",
+                    "com.google.android.maps.MapsActivity"
+                )
+
+                startActivity(intent)
+            }
+
+        }
 
 
     }
@@ -262,5 +369,62 @@ class ViewNotes : AppCompatActivity() {
 
         }
 
+    }
+
+     fun fetchLocation() {
+
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+            != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this,Manifest.permission.ACCESS_COARSE_LOCATION)
+            != PackageManager.PERMISSION_GRANTED)
+        {
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), REQUEST_CODE)
+            return
+        }
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
+
+        val task = fusedLocationProviderClient!!.lastLocation
+        task.addOnSuccessListener { location ->
+            if (location != null){
+                currentLocation = location
+
+                val latLng = LatLng(currentLocation!!.latitude, currentLocation!!.longitude)
+                my_loc = latLng.toString()
+
+
+                val geocoder = Geocoder(this, Locale.getDefault())
+                val addresses: List<Address> = geocoder.getFromLocation(currentLocation!!.latitude, currentLocation!!.longitude, 1)
+                if (addresses.size > 0) {
+                    viewAddress.setText(addresses[0].getAddressLine(0))
+                    addressline= addresses[0].getAddressLine(0)
+                    Log.e("location_inside",addresses[0].adminArea)
+                    Log.e("location_inside2",addresses[0].locality)
+                    Log.e("location_inside3",addresses[0].countryName)
+                    Log.e("location_inside4",addresses[0].getAddressLine(0))
+                    Log.e("location_inside5",addresses[0].subAdminArea)
+                    Log.e("location_inside6",addresses[0].subLocality)
+
+                }
+
+                updatedAddress= addressline
+                viewAddress.setText(addressline)
+                viewAddress.setOnClickListener {
+                    val t = Toast.makeText(this, my_loc, Toast.LENGTH_SHORT)
+                    t.show()
+                    val strUri =
+                        "http://maps.google.com/maps?q=loc:" + currentLocation!!.latitude.toString() + "," + currentLocation!!.longitude.toString() + " (" + addressline + ")"
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(strUri))
+
+                    intent.setClassName(
+                        "com.google.android.apps.maps",
+                        "com.google.android.maps.MapsActivity"
+                    )
+
+                    startActivity(intent)
+                }
+    }
+
+
+}
      }
 }

@@ -4,7 +4,6 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import android.net.Uri
 import android.util.Log
 import com.example.enotes.models.create_note
 
@@ -26,6 +25,7 @@ class DbHelper(context:Context): SQLiteOpenHelper(context,DATABASE_NAME,null,DAT
         private val ADDRESS = "address"
         private val BOOKMARK = "bookmark"
         private val CURRENT_DATE = "current_date"
+        private val REMINDER_DATE= "reminder_date"
 
         // table for saving notes sketch images
         private val TABLE_NOTES_SKETCH_IMAGE = "Notes_Sketch"
@@ -46,7 +46,7 @@ class DbHelper(context:Context): SQLiteOpenHelper(context,DATABASE_NAME,null,DAT
                 + TEXT_SIZE + " TEXT," + TEXT_FONT + " TEXT," + ADDRESS + " TEXT," + TEXT_CLR + " TEXT,"
                 + BG_CLR + " TEXT,"
                + BOOKMARK + " TEXT,"
-                + CURRENT_DATE + " TEXT "
+                + CURRENT_DATE + " TEXT," + REMINDER_DATE + " TEXT "
                 + " )")
 
 
@@ -67,7 +67,7 @@ class DbHelper(context:Context): SQLiteOpenHelper(context,DATABASE_NAME,null,DAT
     fun addNotes(
         title: String, content: String,
         textsize: String, textfont: String, textclr: String,
-        bgclr: String, address: String, sketchList: ArrayList<String>, bookmark:String, date:String)
+        bgclr: String, address: String, sketchList: ArrayList<String>, bookmark:String, date:String,reminder_date:String)
     {
         openDB()
      val values = ContentValues()
@@ -80,6 +80,7 @@ class DbHelper(context:Context): SQLiteOpenHelper(context,DATABASE_NAME,null,DAT
         values.put(ADDRESS, address)
         values.put(BOOKMARK,bookmark)
         values.put(CURRENT_DATE,date)
+        values.put(REMINDER_DATE,reminder_date)
         Log.e("bookmarksss",bookmark)
 
         val index = myDbInstance.insert(TABLE_NOTES, null, values)
@@ -136,18 +137,20 @@ class DbHelper(context:Context): SQLiteOpenHelper(context,DATABASE_NAME,null,DAT
                 val addres: String = cursor.getString(cursor.getColumnIndexOrThrow(ADDRESS))
                 val bookmark: String = cursor.getString(cursor.getColumnIndexOrThrow(BOOKMARK))
                 val date: String= cursor.getString(cursor.getColumnIndexOrThrow(CURRENT_DATE))
+                val reminder_date:String= cursor.getString(cursor.getColumnIndexOrThrow(REMINDER_DATE))
 
                 val note = create_note(
                     id = note_id,
+                    bg_clr = bgclr,
+                    txtsize = textsize,
+                    text_font = textfont,
+                    text_clr = textclr,
                     title = note_title,
                     content = note_content,
-                    txtsize = textsize,
-                    text_clr = textclr,
-                    text_font = textfont,
-                    bg_clr = bgclr,
                     address = addres,
                     bookmark = bookmark,
-                    currentdate = date
+                    currentdate = date,
+                    reminderDate = reminder_date
                 )
 
                 /**

@@ -15,6 +15,7 @@ class create_note {
     val address: String
     val bookmark: String
     val currentDate: String
+    val reminderDate :String
 
     var imageUrl = ArrayList<String>()
 
@@ -29,7 +30,8 @@ class create_note {
         content: String,
         address: String,
         bookmark: String,
-        currentdate:String
+        currentdate: String,
+        reminderDate: String
     )
     {
         this.id = id
@@ -42,6 +44,7 @@ class create_note {
         this.address = address
         this.bookmark= bookmark
         this.currentDate= currentdate
+        this.reminderDate = reminderDate
     }
 
 

@@ -106,14 +106,40 @@
                         tools:spanCount="2">
 
                     </androidx.recyclerview.widget.RecyclerView>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp">
+    <TextView
+        android:id="@+id/viewAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="address"
+        >
 
+    </TextView>
+
+    <ImageView
+        android:id="@+id/edit_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/create_24"
+        android:background="@color/orange"
+        android:visibility="gone"
+        android:layout_alignParentRight="true">
+
+    </ImageView>
+
+</RelativeLayout>
                     <TextView
-                        android:id="@+id/viewAddress"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/view_reminders"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="15sp">
+                        android:text="add reminder"
+                        android:textSize="10sp">
 
                     </TextView>
+
                 </LinearLayout>
             </ScrollView>
 
@@ -135,7 +161,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
-                android:text="Update">
+                android:text="Edit">
 
             </Button>
 

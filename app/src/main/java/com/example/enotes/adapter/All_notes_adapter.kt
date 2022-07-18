@@ -71,8 +71,6 @@ class All_notes_adapter
         holder.date.text= notes.currentDate
         holder.cardView.setOnClickListener {
 
-            Toast.makeText(context, "Long click detected", Toast.LENGTH_SHORT).show()
-
             val intent = Intent(context, ViewNotes::class.java)
             intent.putExtra("title", notes.title)
             intent.putExtra("content", notes.content)
@@ -80,6 +78,7 @@ class All_notes_adapter
             intent.putExtra("textclr", notes.text_clr)
             intent.putExtra("font", notes.text_font)
             intent.putExtra("bg", notes.bg_clr)
+            intent.putExtra("reminder_date",notes.reminderDate)
             intent.putExtra("address", notes.address)
             context.startActivity(intent)
 

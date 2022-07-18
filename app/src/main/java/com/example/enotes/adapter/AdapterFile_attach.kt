@@ -32,11 +32,7 @@ class AdapterFile_attach(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val model: ImageModel = arrayList.get(position)
-//
-//        model.uri= file_uri.get(position)
-//        model.name= file_name.get(position)
-//        val uri: Uri = file_uri.get(position)
-//        val name:String= file_name.get(position)
+
         holder.image.setImageURI(model.uri)
         holder.image.setOnClickListener {
             val intent = Intent(context, OpenImage::class.java)
@@ -48,8 +44,7 @@ class AdapterFile_attach(
         holder.image.setOnLongClickListener{
 
             val dialog = AlertDialog.Builder(context)
-            dialog.setTitle("Item deletion")
-            dialog.setMessage("Do you want to delete this item?")
+            dialog.setMessage("Do you want to delete this image?")
             dialog.setPositiveButton("Yes", DialogInterface.OnClickListener { _, _ ->
                 deleteItem(position)
 

@@ -1,24 +1,26 @@
 package com.example.enotes
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.AlarmManager
 import android.app.DatePickerDialog
 import android.app.PendingIntent
 import android.app.TimePickerDialog
+import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.location.Address
 import android.location.Geocoder
 import android.location.Location
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.provider.MediaStore
+import android.os.Environment.DIRECTORY_DCIM
+import android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+import android.provider.MediaStore.MediaColumns.*
 import android.provider.OpenableColumns
-import android.util.Base64
 import android.util.Log
 import android.widget.*
 import androidx.activity.result.contract.ActivityResultContracts
@@ -30,9 +32,11 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.designstuff.api.ApiService
 import com.example.enotes.adapter.AdapterFile_attach
 import com.example.enotes.adapter.Adapter_img_attach
 import com.example.enotes.databasehelper.DbHelper
+import com.example.enotes.models.ImageModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.model.LatLng
@@ -40,10 +44,18 @@ import com.madrapps.pikolo.ColorPicker
 import com.madrapps.pikolo.listeners.SimpleColorSelectionListener
 import com.redhoodhan.draw.DrawView
 import kotlinx.android.synthetic.main.dialog_draw.view.*
-import java.io.ByteArrayOutputStream
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.io.File
 import java.io.IOException
+import java.io.OutputStream
+import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 class Text_note : AppCompatActivity() {
@@ -72,6 +84,7 @@ class Text_note : AppCompatActivity() {
     var lat: String=""
     var lng:String=""
 
+    var bookmark :String=""
 
     var day=0
     var month=0
@@ -82,6 +95,12 @@ class Text_note : AppCompatActivity() {
     var returndate2=""
     var reminderDateTimeInMilliseconds: Long = 0
 
+    private lateinit var fileUri2: Uri
+    private lateinit var apiService: ApiService
+    private var catPhoto = File("")
+
+    @SuppressLint("NotifyDataSetChanged")
+    @RequiresApi(Build.VERSION_CODES.Q)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_text_note)
@@ -162,6 +181,9 @@ class Text_note : AppCompatActivity() {
         content.setTypeface(typeface)
 
         var ooo: String =""
+        bookmrk.setImageResource(R.drawable.bookmark_border_24)
+        bookmark="untag"
+
         mybookmrk.setOnClickListener {
             val view = layoutInflater.inflate(R.layout.dialog_bookmark, null)
             val mBuilder = AlertDialog.Builder(this)
@@ -173,33 +195,39 @@ class Text_note : AppCompatActivity() {
             red.setOnClickListener {
                 mAlertDialog.dismiss()
                 bookmrk.setImageResource(R.drawable.bookmark_red)
+                bookmark="red"
             }
 
             val blue= view.findViewById<LinearLayout>(R.id.bookmrk_Travel)
             blue.setOnClickListener() {
                 mAlertDialog.dismiss()
                 bookmrk.setImageResource(R.drawable.bookmark_blue)
+                bookmark= "blue"
             }
 
             val green= view.findViewById<LinearLayout>(R.id.bookmrk_personal)
             green.setOnClickListener {
                 mAlertDialog.dismiss()
                 bookmrk.setImageResource(R.drawable.bookmark_grren)
+                bookmark="green"
             }
             val yellow= view.findViewById<LinearLayout>(R.id.bookmrk_life)
             yellow.setOnClickListener {
                 mAlertDialog.dismiss()
                 bookmrk.setImageResource(R.drawable.bookmark_yellow)
+                bookmark="yellow"
             }
             val orange= view.findViewById<LinearLayout>(R.id.bookmrk_birthday)
             orange.setOnClickListener {
                 mAlertDialog.dismiss()
                 bookmrk.setImageResource(R.drawable.bookmark_orage)
+                bookmark="orange"
             }
             val untag= view.findViewById<LinearLayout>(R.id.bookmrk_untag)
             untag.setOnClickListener {
                 mAlertDialog.dismiss()
                 bookmrk.setImageResource(R.drawable.bookmark_border_24)
+                bookmark="untag"
             }
         }
 
@@ -566,16 +594,13 @@ class Text_note : AppCompatActivity() {
         val fileupload = findViewById<ImageButton>(R.id.fileupload)
         val file_Name = ArrayList<String>()
         val fileUriList = ArrayList<Uri>()
+
+        val arrayList = ArrayList<ImageModel>()
         val file_recyclerview = findViewById<RecyclerView>(R.id.file_attach)
-        val file_adapter = AdapterFile_attach(fileUriList, file_Name, this)
+        val file_adapter = AdapterFile_attach(arrayList, this)
 
         file_recyclerview.adapter = file_adapter
         file_recyclerview.layoutManager = GridLayoutManager(this, 2)
-
-//        file_recyclerview.layoutManager = LinearLayoutManager(this)
-
-//        img_recyclerview.adapter = img_adapter
-//        img_recyclerview.layoutManager = LinearLayoutManager(this)
 
 
         my_drawing.setOnClickListener {
@@ -602,16 +627,29 @@ class Text_note : AppCompatActivity() {
             }
             done.setOnClickListener {
                 mAlertDialog.dismiss()
-                val myUri = getImageUri(this@Text_note, drawingView.drawing_view.saveAsBitmap())
-                //val getit : String =
+                val myUri = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                    getImageUri( drawingView.drawing_view.saveAsBitmap())
+                } else {
+                    TODO("VERSION.SDK_INT < Q")
+                }
+
                 myUri?.let {
                     fileUriList.add(it)
                     file_Name.add(it.toString())
+                    val name= it.toString()
+                    val urii = it
+                    val model:ImageModel
+                    model= ImageModel(name,urii)
+
+                    arrayList.add(model)
+
+
+
                 }
                 drawingView.isSaveEnabled
                 file_adapter.notifyDataSetChanged()
 
-                //   Log.e("getit",uri.toString())
+                   Log.e("getit",myUri.toString())
 
 
 
@@ -620,32 +658,6 @@ class Text_note : AppCompatActivity() {
 
         }
 
-        fun getFileName(uri: Uri?): String {
-            result = null.toString()
-            if (uri != null) {
-                if (uri.scheme == "content") {
-                    val cursor = contentResolver.query(uri, null, null, null, null)
-                    try {
-                        if (cursor != null && cursor.moveToFirst()) {
-                            result =
-                                cursor.getString(cursor.getColumnIndexOrThrow(OpenableColumns.DISPLAY_NAME))
-                        }
-                    } finally {
-                        cursor!!.close()
-                    }
-                }
-            }
-            if (result == null) {
-                if (uri != null) {
-                    result = uri.path.toString()
-                }
-                val cut: Int = result.lastIndexOf('/')
-                if (cut != -1) {
-                    result = result.substring(cut + 1)
-                }
-            }
-            return result
-        }
 
 
 // Receiver
@@ -657,10 +669,16 @@ class Text_note : AppCompatActivity() {
                     if (it.data?.data != null) {
 
                         fileUri = Uri.parse(it.data!!.data.toString())
+                        Log.e("getit",fileUri.toString())
+
                         fileUriList.add(fileUri)
-                        fileName = getFileName(fileUri)
-                        Log.e("name", fileName)
-                        file_Name.add(fileName)
+                        file_Name.add(fileUri.toString())
+                        val model:ImageModel
+                        model= ImageModel(fileName,fileUri)
+
+                        arrayList.add(model)
+
+
                         file_adapter.notifyDataSetChanged()
 
 
@@ -674,11 +692,16 @@ class Text_note : AppCompatActivity() {
 
                             fileUri = it.data!!.clipData!!.getItemAt(i).uri
                             fileUriList.add(fileUri)
-                            fileName = getFileName(fileUri)
-                            Log.e("name", fileName)
-                            file_Name.add(fileName)
+                            file_Name.add(fileUri.toString())
                             file_adapter.notifyItemInserted(i)
                             file_adapter.notifyDataSetChanged()
+
+                            val model:ImageModel
+                            model= ImageModel(fileName,fileUri)
+
+                            arrayList.add(model)
+
+
 
                         }
                     }
@@ -840,6 +863,9 @@ class Text_note : AppCompatActivity() {
             Log.e("clr bgg",bg_clr.toString()+" ")
             Log.e("clr f",fontclr.toString()+" ")
             Log.e("check2",returndate.toString()+" "+ returndate2)
+            Log.e("bookmarkss",bookmark)
+            val sdf = SimpleDateFormat("dd/M/yyyy hh:mm:ss")
+            val currentDate = sdf.format(Date())
 
             db.addNotes(
                 text_title.text.toString(),
@@ -849,25 +875,86 @@ class Text_note : AppCompatActivity() {
                 fontclr.toString(),
                 bg_clr.toString(),
                 addressline,
-                file_Name
+                file_Name,
+                bookmark,
+                currentDate
             )
+         //   uploadImageToServer()
 
             finish()
         }
 
     }
 
-    fun getImageUri(inContext: Context, inImage: Bitmap): Uri? {
-        val bytes = ByteArrayOutputStream()
-        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
-        val path =
-            MediaStore.Images.Media.insertImage(
-                inContext.contentResolver,
-                inImage,
-                "Title",
-                null
+    private fun uploadImageToServer() {
+        val builder: MultipartBody.Builder = MultipartBody.Builder()
+        builder.setType(MultipartBody.FORM)
+
+        if (catPhoto.length() > 0) {
+            builder.addFormDataPart(
+                "file",
+                catPhoto.name,
+                catPhoto.asRequestBody("image/jpeg".toMediaTypeOrNull())
             )
-        return Uri.parse(path)
+            builder.addFormDataPart("sub_id", "something")
+
+            val body = builder.build()
+            apiService.uploadPhoto(body).enqueue(object : Callback<ImageModel> {
+                override fun onResponse(
+                    call: Call<ImageModel>,
+                    response: Response<ImageModel>
+                ) {
+                    Log.d("TAG", "onResponse: ${response.body()}")
+                }
+
+                override fun onFailure(call: Call<ImageModel>, t: Throwable) {
+                    Log.d("TAG", "onFailure: ${t.localizedMessage}")
+                }
+
+            })
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.Q)
+fun getImageUri(inImage: Bitmap): Uri? {
+//        val bytes = ByteArrayOutputStream()
+//
+//        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
+//        val path =
+//            MediaStore.Images.Media.insertImage(
+//                inContext.contentResolver,
+//                inImage,
+//                "Title",
+//                null
+//            )
+
+    val filename = "IMG_${System.currentTimeMillis()}.jpg"
+    var fos: OutputStream? = null
+    val contentValues = ContentValues().apply {
+        put(DISPLAY_NAME, filename)
+        put(MIME_TYPE, "image/png")
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            put(RELATIVE_PATH, DIRECTORY_DCIM)
+        }
+        put(IS_PENDING, 1)
+    }
+
+
+    //use application context to get contentResolver
+    val uri = contentResolver.insert(EXTERNAL_CONTENT_URI, contentValues)
+    uri?.let { contentResolver.openOutputStream(it) }.also { fos = it }
+    fos?.use { inImage.compress(Bitmap.CompressFormat.PNG, 100, it) }
+    fos?.flush()
+    fos?.close()
+
+    contentValues.clear()
+    contentValues.put(IS_PENDING, 0)
+
+    uri?.let {
+        contentResolver.update(it, contentValues, null, null)
+    }
+
+    return uri
     }
     private fun setAlarm() {
         val manager = getSystemService(Context.ALARM_SERVICE) as AlarmManager

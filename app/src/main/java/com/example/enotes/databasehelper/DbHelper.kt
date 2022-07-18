@@ -4,6 +4,7 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import android.net.Uri
 import android.util.Log
 import com.example.enotes.models.create_note
 
@@ -23,6 +24,8 @@ class DbHelper(context:Context): SQLiteOpenHelper(context,DATABASE_NAME,null,DAT
         private val TEXT_CLR="text_clr"
         private val BG_CLR="bg_clr"
         private val ADDRESS = "address"
+        private val BOOKMARK = "bookmark"
+        private val CURRENT_DATE = "current_date"
 
         // table for saving notes sketch images
         private val TABLE_NOTES_SKETCH_IMAGE = "Notes_Sketch"
@@ -41,7 +44,12 @@ class DbHelper(context:Context): SQLiteOpenHelper(context,DATABASE_NAME,null,DAT
                 + KEY_ID + " INTEGER PRIMARY KEY,"
                 + KEY_TITLE + " TEXT," + KEY_CONTENT + " TEXT,"
                 + TEXT_SIZE + " TEXT," + TEXT_FONT + " TEXT," + ADDRESS + " TEXT," + TEXT_CLR + " TEXT,"
-                + BG_CLR + " TEXT " + " )")
+                + BG_CLR + " TEXT,"
+               + BOOKMARK + " TEXT,"
+                + CURRENT_DATE + " TEXT "
+                + " )")
+
+
         val CREATE_NOTES_IMAGE_TABLE = ("CREATE TABLE " + TABLE_NOTES_SKETCH_IMAGE + "( "
                 + KEY_IMAGE_ID + " INTEGER PRIMARY KEY,"
                 + KEY_NOTE_ID + " INTEGER,"
@@ -56,9 +64,10 @@ class DbHelper(context:Context): SQLiteOpenHelper(context,DATABASE_NAME,null,DAT
         onCreate(db)
     }
 
-    fun addNotes(  title: String, content: String,
-                   textsize: String, textfont: String, textclr: String,
-                   bgclr: String, address: String, sketchList: ArrayList<String>)
+    fun addNotes(
+        title: String, content: String,
+        textsize: String, textfont: String, textclr: String,
+        bgclr: String, address: String, sketchList: ArrayList<String>, bookmark:String, date:String)
     {
         openDB()
      val values = ContentValues()
@@ -69,8 +78,11 @@ class DbHelper(context:Context): SQLiteOpenHelper(context,DATABASE_NAME,null,DAT
         values.put(TEXT_CLR,textclr )
         values.put(BG_CLR, bgclr)
         values.put(ADDRESS, address)
+        values.put(BOOKMARK,bookmark)
+        values.put(CURRENT_DATE,date)
+        Log.e("bookmarksss",bookmark)
 
-        var index = myDbInstance.insert(TABLE_NOTES, null, values)
+        val index = myDbInstance.insert(TABLE_NOTES, null, values)
         Log.e("success22", "index of notes -> $index")
 
         addSketchImageOfNotes(index.toInt(), sketchList)
@@ -122,6 +134,8 @@ class DbHelper(context:Context): SQLiteOpenHelper(context,DATABASE_NAME,null,DAT
                 val textfont: String = cursor.getString(cursor.getColumnIndexOrThrow(TEXT_FONT))
                 val bgclr: String = cursor.getString(cursor.getColumnIndexOrThrow(BG_CLR))
                 val addres: String = cursor.getString(cursor.getColumnIndexOrThrow(ADDRESS))
+                val bookmark: String = cursor.getString(cursor.getColumnIndexOrThrow(BOOKMARK))
+                val date: String= cursor.getString(cursor.getColumnIndexOrThrow(CURRENT_DATE))
 
                 val note = create_note(
                     id = note_id,
@@ -131,7 +145,9 @@ class DbHelper(context:Context): SQLiteOpenHelper(context,DATABASE_NAME,null,DAT
                     text_clr = textclr,
                     text_font = textfont,
                     bg_clr = bgclr,
-                    address = addres
+                    address = addres,
+                    bookmark = bookmark,
+                    currentdate = date
                 )
 
                 /**

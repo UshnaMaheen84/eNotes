@@ -13,7 +13,7 @@ interface ApiServiceSignupLogin {
     @POST("/authentication")
     fun loninUser(@Body loginRequest: LoginRequest): Call<LoginResponse>
 
-    @POST("Users/GetUsers")
+    @POST("Users/PostUsers")
     fun registerUser(@Body registerRequest: RegisterRequest): Call<RegisterResponse>
 
 }

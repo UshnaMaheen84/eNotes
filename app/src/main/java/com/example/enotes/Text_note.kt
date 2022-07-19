@@ -20,7 +20,6 @@ import android.os.Bundle
 import android.os.Environment.DIRECTORY_DCIM
 import android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI
 import android.provider.MediaStore.MediaColumns.*
-import android.provider.OpenableColumns
 import android.util.Log
 import android.widget.*
 import androidx.activity.result.contract.ActivityResultContracts
@@ -43,6 +42,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.madrapps.pikolo.ColorPicker
 import com.madrapps.pikolo.listeners.SimpleColorSelectionListener
 import com.redhoodhan.draw.DrawView
+import kotlinx.android.synthetic.main.activity_text_note.*
 import kotlinx.android.synthetic.main.dialog_draw.view.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -55,7 +55,6 @@ import java.io.IOException
 import java.io.OutputStream
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
 
 
 class Text_note : AppCompatActivity() {
@@ -99,6 +98,9 @@ class Text_note : AppCompatActivity() {
     private lateinit var apiService: ApiService
     private var catPhoto = File("")
 
+     var _id = System.currentTimeMillis().toInt()
+
+
     @SuppressLint("NotifyDataSetChanged")
     @RequiresApi(Build.VERSION_CODES.Q)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -141,7 +143,6 @@ class Text_note : AppCompatActivity() {
             // returndate2= "$hour: $minute"
             alarm_tv.setText(returndate+ " "+returndate2)
 
-            setAlarm()
 
         }
         val date =
@@ -173,6 +174,11 @@ class Text_note : AppCompatActivity() {
             ).show()
 
 
+        }
+
+        alarm_tv.setOnLongClickListener {
+            cancelAlarm()
+            true
         }
 
         content.setTextSize(txtsize)
@@ -881,12 +887,15 @@ class Text_note : AppCompatActivity() {
                 reminder_date
             )
          //   uploadImageToServer()
+            setAlarm()
 
             finish()
         }
 
     }
 
+
+//for multipart
     private fun uploadImageToServer() {
         val builder: MultipartBody.Builder = MultipartBody.Builder()
         builder.setType(MultipartBody.FORM)
@@ -916,18 +925,9 @@ class Text_note : AppCompatActivity() {
         }
     }
 
+    //for sketch images
     @RequiresApi(Build.VERSION_CODES.Q)
 fun getImageUri(inImage: Bitmap): Uri? {
-//        val bytes = ByteArrayOutputStream()
-//
-//        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
-//        val path =
-//            MediaStore.Images.Media.insertImage(
-//                inContext.contentResolver,
-//                inImage,
-//                "Title",
-//                null
-//            )
 
     val filename = "IMG_${System.currentTimeMillis()}.jpg"
     var fos: OutputStream? = null
@@ -957,16 +957,30 @@ fun getImageUri(inImage: Bitmap): Uri? {
 
     return uri
     }
+
+
+    private fun cancelAlarm() {
+
+        val intent = Intent(this, BroadcastService::class.java)
+
+        val pendingIntent = PendingIntent.getBroadcast(this, _id, intent, 0)
+        val alarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
+        alarmManager.cancel(pendingIntent)
+
+    }
     private fun setAlarm() {
         val manager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val myIntent: Intent
-        val _id = System.currentTimeMillis().toInt()
 
-        val pendingIntent: PendingIntent
+
+
         myIntent = Intent(this, BroadcastService::class.java)
         myIntent.putExtra("time",returndate2)
+        myIntent.putExtra("title",text_title.text.toString())
 
+        val pendingIntent: PendingIntent
         pendingIntent = PendingIntent.getBroadcast(this, _id, myIntent, PendingIntent.FLAG_UPDATE_CURRENT)
+
 
         val setdate: Calendar
         setdate= Calendar.getInstance()

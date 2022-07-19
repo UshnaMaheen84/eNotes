@@ -29,11 +29,12 @@ class BroadcastService : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
 
-        var time= intent.getStringExtra("time")
+        val time= intent.getStringExtra("time")
         Toast.makeText(context, "Successful", Toast.LENGTH_SHORT).show()
+        val title= intent.getStringExtra("title")
 
         createNotificationChannel(context)
-        notifyNotification(context,time)
+        notifyNotification(context,time, title)
 
 
         if (time != null) {
@@ -54,11 +55,11 @@ class BroadcastService : BroadcastReceiver() {
         }
     }
 
-    private fun notifyNotification(context: Context, time: String?) {
+    private fun notifyNotification(context: Context, time: String?, title:String?) {
         with(NotificationManagerCompat.from(context)) {
             val build = NotificationCompat.Builder(context, NOTIFICATION_CHANNEL_ID)
                 .setContentTitle(time)
-                .setContentText("Alarm.")
+                .setContentText(title)
                 .setSmallIcon(R.drawable.ic_lock_idle_alarm)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
 

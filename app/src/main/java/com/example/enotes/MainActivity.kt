@@ -67,16 +67,31 @@ class MainActivity : AppCompatActivity() {
             when (it.itemId) {
                 R.id.nav_allnotes ->
                     Toast.makeText(applicationContext, "all notes", Toast.LENGTH_SHORT).show()
-
-
             }
-            true
             when (it.itemId) {
-                R.id.nav_reminders ->
-                    Toast.makeText(applicationContext, "all reminders", Toast.LENGTH_SHORT).show()
-
-
+                R.id.nav_travel ->
+                    Toast.makeText(applicationContext, "all travels", Toast.LENGTH_SHORT).show()
+             }
+            when (it.itemId) {
+                R.id.nav_untag ->
+                    Toast.makeText(applicationContext, "all untags", Toast.LENGTH_SHORT).show()
+             }
+            when (it.itemId) {
+            R.id.nav_life ->
+                Toast.makeText(applicationContext, "all lifes", Toast.LENGTH_SHORT).show()
             }
+            when (it.itemId) {
+                R.id.nav_birthdays ->
+                    Toast.makeText(applicationContext, "all birthdays", Toast.LENGTH_SHORT).show()
+            }
+            when (it.itemId) {
+            R.id.nav_peronal ->
+                Toast.makeText(applicationContext, "all personals", Toast.LENGTH_SHORT).show()
+        }
+                when (it.itemId) {
+                    R.id.nav_work ->
+                        Toast.makeText(applicationContext, "all works", Toast.LENGTH_SHORT).show()
+                }
             true
         }
 

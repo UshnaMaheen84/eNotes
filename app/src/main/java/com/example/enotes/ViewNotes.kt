@@ -54,7 +54,12 @@ class ViewNotes : AppCompatActivity() {
         val bgclr = intent.extras!!.getString("bg")
         val reminder_date= intent.extras!!.getString("reminder_date")
 
-        view_reminders.setText("Reminder set for "+reminder_date)
+        Log.e("reminder_date",reminder_date.toString())
+        if (reminder_date=="add reminder"){
+            view_reminders.setText(" ")
+        }
+        else{
+        view_reminders.setText("Reminder set for "+reminder_date)}
         val address= intent.extras!!.getString("address")
         viewAddress.setText(address)
         viewAddress.setOnClickListener {

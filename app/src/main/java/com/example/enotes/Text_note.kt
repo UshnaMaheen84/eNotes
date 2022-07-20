@@ -8,6 +8,7 @@ import android.app.PendingIntent
 import android.app.TimePickerDialog
 import android.content.ContentValues
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -93,6 +94,7 @@ class Text_note : AppCompatActivity() {
     var returndate=""
     var returndate2=""
     var reminderDateTimeInMilliseconds: Long = 0
+    var alarmDate= "add reminder"
 
     private lateinit var fileUri2: Uri
     private lateinit var apiService: ApiService
@@ -140,8 +142,9 @@ class Text_note : AppCompatActivity() {
             val minuteVar = if (minute < 10) "0$minute" else minute.toString() + ""
             returndate2= "$hourvar:$minuteVar"
 
+            alarmDate= returndate+" "+returndate2
             // returndate2= "$hour: $minute"
-            alarm_tv.setText(returndate+ " "+returndate2)
+            alarm_tv.setText(alarmDate)
 
 
         }
@@ -177,7 +180,17 @@ class Text_note : AppCompatActivity() {
         }
 
         alarm_tv.setOnLongClickListener {
-            cancelAlarm()
+            //cancelAlarm()
+            val dialog = AlertDialog.Builder(this)
+            dialog.setMessage("Do you want to delete this image?")
+            dialog.setPositiveButton("Yes", DialogInterface.OnClickListener { _, _ ->
+
+                alarmDate= "add reminder"
+                    alarm_tv.setText(alarmDate)
+            })
+
+            dialog.show()
+
             true
         }
 
@@ -865,14 +878,10 @@ class Text_note : AppCompatActivity() {
             val title: String = text_title.text.toString()
             val contnt: String = content.text.toString()
 
-            Log.e("clr bgg",bg_clr.toString()+" ")
-            Log.e("clr f",fontclr.toString()+" ")
-            Log.e("check2",returndate+" "+ returndate2)
-            Log.e("bookmarkss",bookmark)
             val sdf = SimpleDateFormat("dd/M/yyyy hh:mm:ss")
             val currentDate = sdf.format(Date())
 
-            val reminder_date= returndate+" "+ returndate2
+            val reminder_date = returndate + " " + returndate2
             db.addNotes(
                 text_title.text.toString(),
                 content.text.toString(),
@@ -884,13 +893,15 @@ class Text_note : AppCompatActivity() {
                 file_Name,
                 bookmark,
                 currentDate,
-                reminder_date
+                alarmDate
             )
-         //   uploadImageToServer()
-            setAlarm()
+            //   uploadImageToServer()
+            if (alarmDate!="add reminder")
+            {
+                setAlarm()
+            }
 
-            finish()
-        }
+            finish() }
 
     }
 
@@ -968,11 +979,10 @@ fun getImageUri(inImage: Bitmap): Uri? {
         alarmManager.cancel(pendingIntent)
 
     }
+
     private fun setAlarm() {
         val manager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val myIntent: Intent
-
-
 
         myIntent = Intent(this, BroadcastService::class.java)
         myIntent.putExtra("time",returndate2)

@@ -3,14 +3,14 @@ package com.example.enotes
 import android.R
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.util.Log
 import android.widget.Toast
 import androidx.core.app.NotificationCompat
-
-import android.os.Build
 import androidx.core.app.NotificationManagerCompat
 
 
@@ -33,8 +33,17 @@ class BroadcastService : BroadcastReceiver() {
         Toast.makeText(context, "Successful", Toast.LENGTH_SHORT).show()
         val title= intent.getStringExtra("title")
 
+
         createNotificationChannel(context)
-        notifyNotification(context,time, title)
+        val notificationIntent = Intent(context, MainActivity::class.java)
+        notificationIntent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+
+        val pendingIntent = PendingIntent.getActivity(
+            context, 0, notificationIntent,
+            PendingIntent.FLAG_UPDATE_CURRENT
+        )
+
+        notifyNotification(context,time, title,pendingIntent)
 
 
         if (time != null) {
@@ -55,12 +64,18 @@ class BroadcastService : BroadcastReceiver() {
         }
     }
 
-    private fun notifyNotification(context: Context, time: String?, title:String?) {
+    private fun notifyNotification(
+        context: Context,
+        time: String?,
+        title: String?,
+        pendingIntent: PendingIntent
+    ) {
         with(NotificationManagerCompat.from(context)) {
             val build = NotificationCompat.Builder(context, NOTIFICATION_CHANNEL_ID)
                 .setContentTitle(time)
                 .setContentText(title)
                 .setSmallIcon(R.drawable.ic_lock_idle_alarm)
+                .setContentIntent(pendingIntent)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
 
             notify(NOTIFICATION_ID, build.build())

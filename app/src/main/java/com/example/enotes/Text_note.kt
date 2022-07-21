@@ -22,6 +22,7 @@ import android.os.Environment.DIRECTORY_DCIM
 import android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI
 import android.provider.MediaStore.MediaColumns.*
 import android.util.Log
+import android.view.View
 import android.widget.*
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
@@ -40,6 +41,7 @@ import com.example.enotes.models.ImageModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.madrapps.pikolo.ColorPicker
 import com.madrapps.pikolo.listeners.SimpleColorSelectionListener
 import com.redhoodhan.draw.DrawView
@@ -102,6 +104,7 @@ class Text_note : AppCompatActivity() {
 
      var _id = System.currentTimeMillis().toInt()
 
+    var fabVisible = false
 
     @SuppressLint("NotifyDataSetChanged")
     @RequiresApi(Build.VERSION_CODES.Q)
@@ -112,16 +115,19 @@ class Text_note : AppCompatActivity() {
 
         var typeface = ResourcesCompat.getFont(this, font)
 
+        val addFAB = findViewById<FloatingActionButton>(R.id.idFABAdd)
+
         val cardView = findViewById<CardView>(R.id.card2)
         val cardView1 = findViewById<CardView>(R.id.card1)
-        val done = findViewById<Button>(R.id.done)
+        val done = findViewById<FloatingActionButton>(R.id.done)
         val content = findViewById<EditText>(R.id.text_context)
         val text_title = findViewById<EditText>(R.id.text_title)
         val tv_currentloctn=  findViewById<TextView>(R.id.location)
-        val bgcolor = findViewById<ImageButton>(R.id.bgcolor)
-        val textfont = findViewById<ImageButton>(R.id.textfont)
-        val textSize = findViewById<ImageButton>(R.id.textsize)
-        val font_color = findViewById<ImageButton>(R.id.fontcolor)
+
+        val bgcolor = findViewById<FloatingActionButton>(R.id.bgcolor)
+        val textfont = findViewById<FloatingActionButton>(R.id.textfont)
+        val textSize = findViewById<FloatingActionButton>(R.id.textsize)
+        val font_color = findViewById<FloatingActionButton>(R.id.fontcolor)
         val imgUriList = ArrayList<Uri>()
         val imageNameList = ArrayList<String>()
         val img_recyclerview = findViewById<RecyclerView>(R.id.img_attach)
@@ -129,8 +135,12 @@ class Text_note : AppCompatActivity() {
         val alarm_tv= findViewById<TextView>(R.id.alarm_tv)
         val myCalendar: Calendar = Calendar.getInstance()
         val bookmrk = findViewById<ImageView>(R.id.bookmark)
-        val mybookmrk = findViewById<ImageButton>(R.id.my_bookmark)
-        val my_drawing= findViewById<ImageButton>(R.id.my_sketch)
+        val mybookmrk = findViewById<FloatingActionButton>(R.id.my_bookmark)
+        val my_drawing= findViewById<FloatingActionButton>(R.id.my_sketch)
+
+        fabVisible = false
+
+
 
         val time =TimePickerDialog.OnTimeSetListener{ view, hour,minute ->
             //time save hua
@@ -181,6 +191,7 @@ class Text_note : AppCompatActivity() {
 
         alarm_tv.setOnLongClickListener {
             //cancelAlarm()
+
             val dialog = AlertDialog.Builder(this)
             dialog.setMessage("Do you want to delete this image?")
             dialog.setPositiveButton("Yes", DialogInterface.OnClickListener { _, _ ->
@@ -247,6 +258,7 @@ class Text_note : AppCompatActivity() {
                 bookmrk.setImageResource(R.drawable.bookmark_border_24)
                 bookmark="untag"
             }
+            hideFabs()
         }
 
         textfont.setOnClickListener {
@@ -523,9 +535,11 @@ class Text_note : AppCompatActivity() {
 
             }
 
+            hideFabs()
         }
 
         textSize.setOnClickListener {
+
             val view = layoutInflater.inflate(R.layout.dialog_size, null)
             val mBuilder = AlertDialog.Builder(this)
                 .setView(view)
@@ -558,6 +572,7 @@ class Text_note : AppCompatActivity() {
 
         }
         font_color.setOnClickListener {
+            hideFabs()
             val view = layoutInflater.inflate(R.layout.color_dialog, null)
             val mBuilder = AlertDialog.Builder(this)
                 .setView(view)
@@ -581,6 +596,7 @@ class Text_note : AppCompatActivity() {
             }
         }
         bgcolor.setOnClickListener {
+hideFabs()
 
             val view = layoutInflater.inflate(R.layout.color_dialog, null)
             val mBuilder = AlertDialog.Builder(this)
@@ -609,7 +625,7 @@ class Text_note : AppCompatActivity() {
         }
 
         // for file upload
-        val fileupload = findViewById<ImageButton>(R.id.fileupload)
+        val fileupload = findViewById<FloatingActionButton>(R.id.img_upload)
         val file_Name = ArrayList<String>()
         val fileUriList = ArrayList<Uri>()
 
@@ -622,6 +638,7 @@ class Text_note : AppCompatActivity() {
 
 
         my_drawing.setOnClickListener {
+            hideFabs()
             val view = layoutInflater.inflate(R.layout.dialog_draw, null)
             val mBuilder = AlertDialog.Builder(this)
                 .setView(view)
@@ -729,6 +746,7 @@ class Text_note : AppCompatActivity() {
             }
 
         fileupload.setOnClickListener {
+            hideFabs()
 
             val intent2 = Intent(Intent.ACTION_OPEN_DOCUMENT)
             intent2.setType("image/*")
@@ -847,7 +865,8 @@ class Text_note : AppCompatActivity() {
             }
         }
 
-        findViewById<ImageButton>(R.id.my_location).setOnClickListener {
+        findViewById<FloatingActionButton>(R.id.my_location).setOnClickListener {
+            hideFabs()
             val view = layoutInflater.inflate(R.layout.alertdialog_cocation, null)
             val mBuilder = AlertDialog.Builder(this)
                 .setView(view)
@@ -872,7 +891,29 @@ class Text_note : AppCompatActivity() {
             }
 
         }
+        addFAB.setOnClickListener {
 
+            if (!fabVisible) {
+                mybookmrk.visibility= View.VISIBLE
+                my_drawing.visibility= View.VISIBLE
+                textSize.visibility= View.VISIBLE
+                textfont.visibility= View.VISIBLE
+                font_color.visibility= View.VISIBLE
+                bgcolor.visibility= View.VISIBLE
+                my_location.visibility= View.VISIBLE
+                fileupload.visibility= View.VISIBLE
+                done.visibility= View.GONE
+
+                addFAB.setImageResource(R.drawable.ic_close)
+                fabVisible = true
+
+            }
+            else{
+                hideFabs()
+
+            }
+
+        }
 
         done.setOnClickListener {
             val title: String = text_title.text.toString()
@@ -905,8 +946,24 @@ class Text_note : AppCompatActivity() {
 
     }
 
+    private fun hideFabs() {
+        textsize.visibility= View.GONE
+        my_bookmark.visibility= View.GONE
+        my_sketch.visibility= View.GONE
+        fontcolor.visibility= View.GONE
+        textfont.visibility= View.GONE
+        fontcolor.visibility= View.GONE
+        bgcolor.visibility= View.GONE
+        my_location.visibility= View.GONE
+        img_upload.visibility= View.GONE
+        done.visibility= View.VISIBLE
+        idFABAdd.setImageResource(R.drawable.ic_add)
+        fabVisible = false
 
-//for multipart
+    }
+
+
+    //for multipart
     private fun uploadImageToServer() {
         val builder: MultipartBody.Builder = MultipartBody.Builder()
         builder.setType(MultipartBody.FORM)

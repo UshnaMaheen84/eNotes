@@ -61,6 +61,8 @@ class MainActivity : AppCompatActivity() {
         my_drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
 
+        navview.itemIconTintList= null
+
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         navview.setNavigationItemSelectedListener {

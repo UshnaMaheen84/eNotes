@@ -1,24 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:showIn="navigation_view"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:showIn="navigation_view">
 
     <item android:title="NOTES">
 
         <menu>
             <item
                 android:id="@+id/nav_allnotes"
-                android:title="All Notes" />
+                android:title="All Notes"
+                />
 
             <item
                 android:id="@+id/nav_travel"
                 android:title="Travel"
-                android:icon="@drawable/bookmark_blue"/>
+                android:icon="@drawable/bookmark_blue"
+
+            />
+
    <item
                 android:id="@+id/nav_peronal"
                 android:title="Personal"
-                android:icon="@drawable/bookmark_grren"/>
+                android:icon="@drawable/bookmark_grren"
+       />
    <item
                 android:id="@+id/nav_birthdays"
                 android:title="Birthdays"
@@ -48,9 +53,6 @@
               android:id="@+id/nav_account"
               android:title="My Account" />
 
-          <item
-              android:id="@+id/nav_settings"
-              android:title="Settings" />
 
           <item
               android:id="@+id/nav_logout"

@@ -70,6 +70,7 @@ class AdapterFile_attach(
 
             arrayList.removeAt(position)
             notifyItemRemoved(position)
+        notifyItemRangeChanged(position, arrayList.size)
 
 
         Log.e("delit", "del")

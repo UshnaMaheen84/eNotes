@@ -947,6 +947,7 @@ hideFabs()
     }
 
     private fun hideFabs() {
+
         textsize.visibility= View.GONE
         my_bookmark.visibility= View.GONE
         my_sketch.visibility= View.GONE

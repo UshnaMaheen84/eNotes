@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/grey"
-    tools:context=".Text_note">
+    tools:context=".activities.AddNoteActivity">
 
     <include
         android:id="@+id/included"
@@ -28,18 +28,22 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="45dp">
+
             <EditText
                 android:id="@+id/text_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
                 android:layout_centerVertical="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@android:color/transparent"
                 android:hint="Title"
                 android:padding="1dp"
-                android:layout_marginTop="4dp"
-                android:background="@android:color/transparent"
+                android:lines="1"
                 android:textColor="@color/black"
-                android:textSize="25sp"
+                android:textSize="15sp"
                 android:textStyle="bold">
 
             </EditText>
@@ -49,10 +53,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="5dp"
-                android:layout_centerVertical="true"
                 android:layout_marginBottom="5dp"
                 android:src="@drawable/bookmark">
 
@@ -85,10 +89,10 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="5dp"
-                android:background="@android:color/transparent"
-
                 android:layout_marginBottom="5dp"
-                android:hint="content"
+                android:background="@android:color/transparent"
+                android:hint="description"
+                android:lines="4"
                 android:padding="1dp"
                 android:textColor="@color/black"
                 android:textSize="15sp">
@@ -107,6 +111,15 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="5dp"
+                        android:background="@color/grey"
+
+                        ></View>
+
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/file_attach"
                         android:layout_width="match_parent"
@@ -117,6 +130,15 @@
                         tools:spanCount="2">
 
                     </androidx.recyclerview.widget.RecyclerView>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="5dp"
+                        android:background="@color/grey"
+
+                        ></View>
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/img_attach"
@@ -129,24 +151,70 @@
 
                     </androidx.recyclerview.widget.RecyclerView>
 
-                    <TextView
-                        android:id="@+id/location"
+                    <View
                         android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="5dp"
+                        android:background="@color/grey"
+
+                        ></View>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="10sp">
+                        android:layout_marginLeft="7dp"
+                        android:layout_marginTop="7dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
 
-                    </TextView>
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_baseline_location_on_24"
+                            app:tint="@color/red"></ImageView>
 
-                    <TextView
-                        android:id="@+id/alarm_tv"
+                        <TextView
+                            android:id="@+id/location"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Address"
+                            android:textSize="15sp">
+
+                        </TextView>
+                    </LinearLayout>
+
+                    <View
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="8dp"
-                        android:gravity="end"
-                        android:text="add reminder"
-                        android:textSize="10sp">
+                        android:layout_height="1dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="5dp"
+                        android:background="@color/grey"
 
-                    </TextView>
+                        ></View>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="7dp"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_baseline_alarm_24"
+                            app:tint="@color/red"></ImageView>
+
+
+                        <TextView
+                            android:id="@+id/alarm_tv"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Add reminder"
+                            android:textSize="15sp">
+
+                        </TextView>
+                    </LinearLayout>
 
 
                 </LinearLayout>

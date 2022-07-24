@@ -7,7 +7,8 @@ import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
 import com.example.enotes.models.create_note
 
-class DbHelper(context:Context): SQLiteOpenHelper(context,DATABASE_NAME,null,DATABASE_VERSION){
+class DbHelper(context: Context) :
+    SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
     lateinit var myDbInstance: SQLiteDatabase
 
@@ -18,14 +19,14 @@ class DbHelper(context:Context): SQLiteOpenHelper(context,DATABASE_NAME,null,DAT
         private val KEY_ID = "id"
         private val KEY_TITLE = "title"
         private val KEY_CONTENT = "content"
-        private val TEXT_SIZE="text_size"
-        private val TEXT_FONT="text_font"
-        private val TEXT_CLR="text_clr"
-        private val BG_CLR="bg_clr"
+        private val TEXT_SIZE = "text_size"
+        private val TEXT_FONT = "text_font"
+        private val TEXT_CLR = "text_clr"
+        private val BG_CLR = "bg_clr"
         private val ADDRESS = "address"
         private val BOOKMARK = "bookmark"
         private val CURRENT_DATE = "current_date"
-        private val REMINDER_DATE= "reminder_date"
+        private val REMINDER_DATE = "reminder_date"
 
         // table for saving notes sketch images
         private val TABLE_NOTES_SKETCH_IMAGE = "Notes_Sketch"
@@ -45,7 +46,7 @@ class DbHelper(context:Context): SQLiteOpenHelper(context,DATABASE_NAME,null,DAT
                 + KEY_TITLE + " TEXT," + KEY_CONTENT + " TEXT,"
                 + TEXT_SIZE + " TEXT," + TEXT_FONT + " TEXT," + ADDRESS + " TEXT," + TEXT_CLR + " TEXT,"
                 + BG_CLR + " TEXT,"
-               + BOOKMARK + " TEXT,"
+                + BOOKMARK + " TEXT,"
                 + CURRENT_DATE + " TEXT," + REMINDER_DATE + " TEXT "
                 + " )")
 
@@ -56,7 +57,8 @@ class DbHelper(context:Context): SQLiteOpenHelper(context,DATABASE_NAME,null,DAT
                 + KEY_IMAGE_URI + " TEXT " + ")"
                 )
         db?.execSQL(CREATE_NOTES_TABLE)
-        db?.execSQL(CREATE_NOTES_IMAGE_TABLE)}
+        db?.execSQL(CREATE_NOTES_IMAGE_TABLE)
+    }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldversion: Int, newversion: Int) {
         db!!.execSQL("DROP TABLE IF EXISTS " + TABLE_NOTES)
@@ -65,23 +67,31 @@ class DbHelper(context:Context): SQLiteOpenHelper(context,DATABASE_NAME,null,DAT
     }
 
     fun addNotes(
-        title: String, content: String,
-        textsize: String, textfont: String, textclr: String,
-        bgclr: String, address: String, sketchList: ArrayList<String>, bookmark:String, date:String,reminder_date:String)
-    {
+        title: String,
+        content: String,
+        textsize: String,
+        textfont: String,
+        textclr: String,
+        bgclr: String,
+        address: String,
+        sketchList: ArrayList<String>,
+        bookmark: String,
+        date: String,
+        reminder_date: String
+    ) {
         openDB()
-     val values = ContentValues()
+        val values = ContentValues()
         values.put(KEY_TITLE, title)
         values.put(KEY_CONTENT, content)
         values.put(TEXT_SIZE, textsize)
         values.put(TEXT_FONT, textfont)
-        values.put(TEXT_CLR,textclr )
+        values.put(TEXT_CLR, textclr)
         values.put(BG_CLR, bgclr)
         values.put(ADDRESS, address)
-        values.put(BOOKMARK,bookmark)
-        values.put(CURRENT_DATE,date)
-        values.put(REMINDER_DATE,reminder_date)
-        Log.e("bookmarksss",bookmark)
+        values.put(BOOKMARK, bookmark)
+        values.put(CURRENT_DATE, date)
+        values.put(REMINDER_DATE, reminder_date)
+        Log.e("bookmarksss", bookmark)
 
         val index = myDbInstance.insert(TABLE_NOTES, null, values)
         Log.e("success22", "index of notes -> $index")
@@ -92,6 +102,7 @@ class DbHelper(context:Context): SQLiteOpenHelper(context,DATABASE_NAME,null,DAT
         closeDB()
 
     }
+
     fun openDB() {
         myDbInstance = this.writableDatabase
     }
@@ -136,8 +147,9 @@ class DbHelper(context:Context): SQLiteOpenHelper(context,DATABASE_NAME,null,DAT
                 val bgclr: String = cursor.getString(cursor.getColumnIndexOrThrow(BG_CLR))
                 val addres: String = cursor.getString(cursor.getColumnIndexOrThrow(ADDRESS))
                 val bookmark: String = cursor.getString(cursor.getColumnIndexOrThrow(BOOKMARK))
-                val date: String= cursor.getString(cursor.getColumnIndexOrThrow(CURRENT_DATE))
-                val reminder_date:String= cursor.getString(cursor.getColumnIndexOrThrow(REMINDER_DATE))
+                val date: String = cursor.getString(cursor.getColumnIndexOrThrow(CURRENT_DATE))
+                val reminder_date: String =
+                    cursor.getString(cursor.getColumnIndexOrThrow(REMINDER_DATE))
 
                 val note = create_note(
                     id = note_id,

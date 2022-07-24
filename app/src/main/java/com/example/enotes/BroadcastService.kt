@@ -12,6 +12,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import com.example.enotes.activities.NoteListActivity
 
 
 const val notificationID = 1
@@ -35,7 +36,7 @@ class BroadcastService : BroadcastReceiver() {
 
 
         createNotificationChannel(context)
-        val notificationIntent = Intent(context, MainActivity::class.java)
+        val notificationIntent = Intent(context, NoteListActivity::class.java)
         notificationIntent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
 
         val pendingIntent = PendingIntent.getActivity(

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg2"
-    tools:context=".Login">
+    tools:context=".activities.LoginActivity">
 
     <LinearLayout
         android:id="@+id/layout"
@@ -26,7 +26,7 @@
             android:gravity="center"
             android:text="Log In"
             android:textColor="@color/black"
-            android:textSize="55sp">
+            android:textSize="20sp">
 
         </TextView>
 

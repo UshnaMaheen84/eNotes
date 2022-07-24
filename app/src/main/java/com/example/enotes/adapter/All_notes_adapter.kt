@@ -3,21 +3,19 @@ package com.example.enotes.adapter
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.enotes.R
-import com.example.enotes.ViewNotes
+import com.example.enotes.activities.EditNoteActivity
 import com.example.enotes.models.create_note
-import java.text.SimpleDateFormat
-import java.util.*
 import kotlin.collections.ArrayList
 
 class All_notes_adapter
@@ -41,6 +39,8 @@ class All_notes_adapter
 
         holder.content.setText(notes.content)
         holder.tittle.setText(notes.title)
+        holder.tittle.setTextColor(Integer.parseInt(notes.text_clr))
+        holder.content.setTextColor(Integer.parseInt(notes.text_clr))
         //    holder.tittle.setTypeface(ResourcesCompat.getFont(context, notes.text_font.toInt()))
          val bookmark: String= notes.bookmark
         if (bookmark=="red")
@@ -71,7 +71,7 @@ class All_notes_adapter
         holder.date.text= notes.currentDate
         holder.cardView.setOnClickListener {
 
-            val intent = Intent(context, ViewNotes::class.java)
+            val intent = Intent(context, EditNoteActivity::class.java)
             intent.putExtra("title", notes.title)
             intent.putExtra("content", notes.content)
             intent.putExtra("textsize", notes.txtsize)
@@ -94,7 +94,6 @@ class All_notes_adapter
             dialog.setMessage("Do you want to delete this item?")
             dialog.setPositiveButton("Yes", DialogInterface.OnClickListener { _, _ ->
                 deleteItem(position)
-
             })
 
             dialog.show()

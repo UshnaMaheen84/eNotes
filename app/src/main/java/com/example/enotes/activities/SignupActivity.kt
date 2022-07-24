@@ -1,4 +1,4 @@
-package com.example.enotes
+package com.example.enotes.activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,7 +8,7 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.designstuff.api.ApiClient
+import com.example.enotes.R
 import com.example.enotes.api.ApiClientSignupLogin
 import com.example.enotes.models.request.RegisterRequest
 import com.example.enotes.models.response.RegisterResponse
@@ -16,7 +16,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class Signup : AppCompatActivity() {
+class SignupActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup)
@@ -43,7 +43,7 @@ class Signup : AppCompatActivity() {
         }
 
         login.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, NoteListActivity::class.java)
             startActivity(intent)
             finish()
         }
@@ -61,7 +61,7 @@ class Signup : AppCompatActivity() {
                 if (response.isSuccessful){
                     Toast.makeText(applicationContext,"this is toast message", Toast.LENGTH_LONG).show()
 
-                    val intent = Intent(this@Signup, MainActivity::class.java)
+                    val intent = Intent(this@SignupActivity, NoteListActivity::class.java)
             startActivity(intent)
             finish()
 

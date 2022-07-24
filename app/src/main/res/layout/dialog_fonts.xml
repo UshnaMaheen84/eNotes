@@ -1,14 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="500dp"
-    >
+    android:layout_height="500dp">
+
+    <TextView
+        android:id="@+id/headerTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/orange"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="Select Font"
+        android:textColor="@color/white"
+        android:textSize="18sp">
+
+    </TextView>
+
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="450dp"
-        android:layout_margin="5dp"
-        android:layout_centerInParent="true">
+        android:layout_below="@id/headerTv"
+        android:layout_margin="5dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -17,14 +30,18 @@
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp">
+
                 <TextView
                     android:id="@+id/comfortaa_bold"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/comfortaa_bold"
+                    android:padding="10dp"
                     android:text="Comfortaa bold"
-                    android:textSize="20sp"
-                    android:fontFamily="@font/comfortaa_bold">
+                    android:textSize="16sp">
 
                 </TextView>
 
@@ -32,168 +49,227 @@
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp">
+
                 <TextView
                     android:id="@+id/comfortaa_light"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/comfortaa_light"
+                    android:padding="10dp"
                     android:text="comfortaa light"
-                    android:textSize="20sp"
-                    android:fontFamily="@font/comfortaa_light">
+                    android:textSize="16sp">
 
                 </TextView>
 
             </androidx.cardview.widget.CardView>
+
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp">
+
                 <TextView
                     android:id="@+id/comfortaa_medium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/comfortaa_medium"
+                    android:padding="10dp"
                     android:text="Comfortaa medium"
-                    android:textSize="20sp"
-                    android:fontFamily="@font/comfortaa_medium">
+                    android:textSize="16sp">
 
                 </TextView>
 
             </androidx.cardview.widget.CardView>
+
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp">
+
                 <TextView
                     android:id="@+id/comfortaa_reg"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/comfortaa_regular"
+                    android:padding="10dp"
                     android:text="Comfortaa regular"
-                    android:textSize="20sp"
-                    android:fontFamily="@font/comfortaa_regular">
+                    android:textSize="16sp">
 
                 </TextView>
 
             </androidx.cardview.widget.CardView>
+
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp">
+
                 <TextView
                     android:id="@+id/roboto_bold"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_bold"
+                    android:padding="10dp"
                     android:text="roboto"
-                    android:textSize="20sp"
-                    android:fontFamily="@font/roboto_bold">
+                    android:textSize="16sp">
 
                 </TextView>
 
             </androidx.cardview.widget.CardView>
+
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp">
+
                 <TextView
                     android:id="@+id/roboto_italic"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_italic"
+                    android:padding="10dp"
                     android:text="Roboto italic"
-                    android:textSize="20sp"
-                    android:fontFamily="@font/roboto_italic">
+                    android:textSize="16sp">
 
                 </TextView>
 
             </androidx.cardview.widget.CardView>
+
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp">
+
                 <TextView
                     android:id="@+id/roboto_reg"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_regular"
+                    android:padding="10dp"
                     android:text="Roboto Regular"
-                    android:textSize="20sp"
-                    android:fontFamily="@font/roboto_regular">
+                    android:textSize="16sp">
 
                 </TextView>
 
             </androidx.cardview.widget.CardView>
+
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp">
+
                 <TextView
                     android:id="@+id/satisfy"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/satisfy"
+                    android:padding="10dp"
                     android:text="Satisfy"
-                    android:textSize="20sp"
-                    android:fontFamily="@font/satisfy">
+                    android:textSize="16sp">
 
                 </TextView>
 
             </androidx.cardview.widget.CardView>
+
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp">
+
                 <TextView
                     android:id="@+id/waver"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/waver"
+                    android:padding="10dp"
                     android:text="Waver"
-                    android:textSize="20sp"
-                    android:fontFamily="@font/waver">
+                    android:textSize="16sp">
 
                 </TextView>
 
             </androidx.cardview.widget.CardView>
+
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp">
+
                 <TextView
                     android:id="@+id/shadows"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/shadows_into_light"
+                    android:padding="10dp"
                     android:text="Shadows"
-                    android:textSize="20sp"
-                    android:fontFamily="@font/shadows_into_light">
+                    android:textSize="16sp">
 
                 </TextView>
 
             </androidx.cardview.widget.CardView>
+
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp">
+
                 <TextView
                     android:id="@+id/dancing_bold"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/dancing_script_bold"
+                    android:padding="10dp"
                     android:text="Dancing script bold"
-                    android:textSize="20sp"
-                    android:fontFamily="@font/dancing_script_bold">
+                    android:textSize="16sp">
 
                 </TextView>
 
             </androidx.cardview.widget.CardView>
+
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp">
+
                 <TextView
                     android:id="@+id/dancing_medium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/dancing_script_med"
+                    android:padding="10dp"
                     android:text="Dancing script medium"
-                    android:textSize="20sp"
-                    android:fontFamily="@font/dancing_script_med">
+                    android:textSize="16sp">
 
                 </TextView>
 
             </androidx.cardview.widget.CardView>
+
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp">
+
                 <TextView
                     android:id="@+id/dancing_reg"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/dancing_script_reg"
+                    android:padding="10dp"
                     android:text="Dancing script regular"
-                    android:textSize="20sp"
-                    android:fontFamily="@font/dancing_script_reg">
+                    android:textSize="16sp">
 
                 </TextView>
 
@@ -201,126 +277,170 @@
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp">
+
                 <TextView
                     android:id="@+id/gotham_bold"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/gotham_bold"
+                    android:padding="10dp"
                     android:text="gotham bold"
-                    android:textSize="20sp"
-                    android:fontFamily="@font/gotham_bold">
+                    android:textSize="16sp">
 
                 </TextView>
 
             </androidx.cardview.widget.CardView>
+
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp">
+
                 <TextView
                     android:id="@+id/gotham_italic"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/gotham_medium_italic"
+                    android:padding="10dp"
                     android:text="Gotham italic"
-                    android:textSize="20sp"
-                    android:fontFamily="@font/gotham_medium_italic">
+                    android:textSize="16sp">
 
                 </TextView>
 
             </androidx.cardview.widget.CardView>
+
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp">
+
                 <TextView
                     android:id="@+id/gotham_medium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/gotham_medium"
+                    android:padding="10dp"
                     android:text="gotham medium"
-                    android:textSize="20sp"
-                    android:fontFamily="@font/gotham_medium">
+                    android:textSize="16sp">
 
                 </TextView>
 
             </androidx.cardview.widget.CardView>
+
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp">
+
                 <TextView
                     android:id="@+id/lato_bold"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/lato_bold"
+                    android:padding="10dp"
                     android:text="Lato bold"
-                    android:textSize="20sp"
-                    android:fontFamily="@font/lato_bold">
+                    android:textSize="16sp">
 
                 </TextView>
 
             </androidx.cardview.widget.CardView>
+
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp">
+
                 <TextView
                     android:id="@+id/lato_italic"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/lato_italic"
+                    android:padding="10dp"
                     android:text="Lato italic"
-                    android:textSize="20sp"
-                    android:fontFamily="@font/lato_italic">
+                    android:textSize="16sp">
 
                 </TextView>
 
             </androidx.cardview.widget.CardView>
+
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp">
+
                 <TextView
                     android:id="@+id/lato_reg"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/lato_reg"
+                    android:padding="10dp"
                     android:text="Lato reg"
-                    android:textSize="20sp"
-                    android:fontFamily="@font/lato_reg">
+                    android:textSize="16sp">
 
                 </TextView>
 
             </androidx.cardview.widget.CardView>
+
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp">
+
                 <TextView
                     android:id="@+id/montserrat_bold"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:padding="10dp"
                     android:text="Montserrat bold"
-                    android:textSize="20sp"
-                    android:fontFamily="@font/montserrat_bold">
+                    android:textSize="16sp">
 
                 </TextView>
 
             </androidx.cardview.widget.CardView>
+
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp">
+
                 <TextView
                     android:id="@+id/montserrat_italic"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_italic"
+                    android:padding="10dp"
                     android:text="Montserrat italic"
-                    android:textSize="20sp"
-                    android:fontFamily="@font/montserrat_italic">
+                    android:textSize="16sp">
 
                 </TextView>
 
             </androidx.cardview.widget.CardView>
+
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp">
+
                 <TextView
                     android:id="@+id/montserrat_regular"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_reg"
+                    android:padding="10dp"
                     android:text="Montserrat reg"
-                    android:textSize="20sp"
-                    android:fontFamily="@font/montserrat_reg">
+                    android:textSize="16sp">
 
                 </TextView>
 
@@ -328,62 +448,79 @@
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp">
+
                 <TextView
                     android:id="@+id/pacifico"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/pacifico"
+                    android:padding="10dp"
                     android:text="Pacifico"
-                    android:textSize="20sp"
-                    android:fontFamily="@font/pacifico">
+                    android:textSize="16sp">
 
                 </TextView>
 
             </androidx.cardview.widget.CardView>
+
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp">
+
                 <TextView
                     android:id="@+id/poppins_bold"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_bold"
+                    android:padding="10dp"
                     android:text="Poppins bold"
-                    android:textSize="20sp"
-                    android:fontFamily="@font/poppins_bold">
+                    android:textSize="16sp">
 
                 </TextView>
 
             </androidx.cardview.widget.CardView>
+
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp">
+
                 <TextView
                     android:id="@+id/poppins_italic"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_italic"
+                    android:padding="10dp"
                     android:text="Poppins italic"
-                    android:textSize="20sp"
-                    android:fontFamily="@font/poppins_italic">
+                    android:textSize="16sp">
 
                 </TextView>
 
             </androidx.cardview.widget.CardView>
+
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp">
+
                 <TextView
                     android:id="@+id/poppins_reg"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:padding="10dp"
                     android:text="Poppins reg"
-                    android:textSize="20sp"
-                    android:fontFamily="@font/poppins_regular">
+                    android:textSize="16sp">
 
                 </TextView>
 
             </androidx.cardview.widget.CardView>
-
-
 
 
         </LinearLayout>

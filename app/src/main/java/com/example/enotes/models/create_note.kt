@@ -1,5 +1,7 @@
 package com.example.enotes.models
 
+import android.net.Uri
+
 class create_note {
 
 
@@ -11,6 +13,9 @@ class create_note {
     val title: String
     val content: String
     val address: String
+    val bookmark: String
+    val currentDate: String
+    val reminderDate :String
 
     var imageUrl = ArrayList<String>()
 
@@ -23,8 +28,12 @@ class create_note {
         text_clr: String,
         title: String,
         content: String,
-        address: String
-    ) {
+        address: String,
+        bookmark: String,
+        currentdate: String,
+        reminderDate: String
+    )
+    {
         this.id = id
         this.bg_clr = bg_clr
         this.txtsize = txtsize
@@ -33,14 +42,11 @@ class create_note {
         this.title = title
         this.content = content
         this.address = address
+        this.bookmark= bookmark
+        this.currentDate= currentdate
+        this.reminderDate = reminderDate
     }
 
 
-    //constructor(): this(-1," ","null")
 
 }
-
-
-// {
-//    constructor(id: Int, title: String?, content: String?) : this()
-//}

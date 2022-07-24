@@ -1,41 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:elevation="10dp"
-    android:orientation="vertical">
-<LinearLayout
-    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:layout_margin="10dp">
+    android:orientation="vertical">
 
     <TextView
-        android:id="@+id/small"
+        android:id="@+id/headerTv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="small"
-        android:textSize="16sp"
-        tools:layout_editor_absoluteY="120dp" />
+        android:background="@color/orange"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="Select Size"
+        android:textColor="@color/white"
+        android:textSize="18sp">
 
-    <TextView
-        android:id="@+id/medium"
+    </TextView>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Medium"
-        android:textSize="22sp"
-        tools:layout_editor_absoluteY="205dp" />
+        android:layout_margin="10dp"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/large"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Large"
-        android:textSize="30sp"
-        tools:layout_editor_absoluteX="72dp"
-        tools:layout_editor_absoluteY="274dp" />
+        <TextView
+            android:id="@+id/small"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="small"
+            android:textSize="16sp" />
 
+        <TextView
+            android:id="@+id/medium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Medium"
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/large"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Large"
+            android:textSize="30sp" />
+    </LinearLayout>
 </LinearLayout>
-</androidx.cardview.widget.CardView>

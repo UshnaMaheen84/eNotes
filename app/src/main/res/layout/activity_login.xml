@@ -6,17 +6,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg2"
-    tools:context=".Login">
+    tools:context=".activities.LoginActivity">
 
     <LinearLayout
+        android:id="@+id/layout"
         android:layout_width="350dp"
         android:layout_height="450dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp"
         android:background="@color/white"
-        android:orientation="vertical"
-        android:id="@+id/layout"
-        >
+        android:orientation="vertical">
 
 
         <TextView
@@ -27,27 +26,28 @@
             android:gravity="center"
             android:text="Log In"
             android:textColor="@color/black"
-            android:textSize="55sp">
+            android:textSize="20sp">
 
         </TextView>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Email"
             android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
             android:layout_marginTop="20dp"
-            android:textColor="@color/black"
-            >
+            android:layout_marginRight="20dp"
+            android:text="Email"
+            android:textColor="@color/black">
 
         </TextView>
+
         <EditText
             android:id="@+id/email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="abc@xyz.com"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
+            android:hint="abc@xyz.com"
             android:textColor="@color/black"
 
             >
@@ -57,11 +57,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Password"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
-            android:textColor="@color/black"
-            >
+            android:text="Password"
+            android:textColor="@color/black">
 
         </TextView>
 
@@ -69,10 +68,10 @@
             android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="abc@xyz.com"
-            android:textColor="@color/black"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
+            android:hint="abc@xyz.com"
+            android:textColor="@color/black"
 
             >
 
@@ -82,25 +81,15 @@
             android:id="@+id/login_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/round_button"
-            android:textColor="@color/white"
-            android:text="Log In"
             android:layout_marginTop="50dp"
+            android:background="@drawable/round_button"
+            android:text="Log In"
             android:textAllCaps="false"
-            >
+            android:textColor="@color/white">
+
         </Button>
 
 
-        <TextView
-            android:id="@+id/forget_password"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="forget password ?"
-            android:gravity="end"
-            android:layout_gravity="end"
-            android:textColor="@android:color/black">
-
-        </TextView>
     </LinearLayout>
 
 

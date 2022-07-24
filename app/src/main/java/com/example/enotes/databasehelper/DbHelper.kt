@@ -6,7 +6,6 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
 import com.example.enotes.models.create_note
-import kotlin.math.sqrt
 
 class DbHelper(context: Context) :
     SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
@@ -25,6 +24,9 @@ class DbHelper(context: Context) :
         private val TEXT_CLR = "text_clr"
         private val BG_CLR = "bg_clr"
         private val ADDRESS = "address"
+        private val BOOKMARK = "bookmark"
+        private val CURRENT_DATE = "current_date"
+        private val REMINDER_DATE = "reminder_date"
 
         // table for saving notes sketch images
         private val TABLE_NOTES_SKETCH_IMAGE = "Notes_Sketch"
@@ -38,11 +40,17 @@ class DbHelper(context: Context) :
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
+
         val CREATE_NOTES_TABLE = ("CREATE TABLE " + TABLE_NOTES + "("
                 + KEY_ID + " INTEGER PRIMARY KEY,"
                 + KEY_TITLE + " TEXT," + KEY_CONTENT + " TEXT,"
                 + TEXT_SIZE + " TEXT," + TEXT_FONT + " TEXT," + ADDRESS + " TEXT," + TEXT_CLR + " TEXT,"
-                + BG_CLR + " TEXT " + " )")
+                + BG_CLR + " TEXT,"
+                + BOOKMARK + " TEXT,"
+                + CURRENT_DATE + " TEXT," + REMINDER_DATE + " TEXT "
+                + " )")
+
+
         val CREATE_NOTES_IMAGE_TABLE = ("CREATE TABLE " + TABLE_NOTES_SKETCH_IMAGE + "( "
                 + KEY_IMAGE_ID + " INTEGER PRIMARY KEY,"
                 + KEY_NOTE_ID + " INTEGER,"
@@ -59,11 +67,18 @@ class DbHelper(context: Context) :
     }
 
     fun addNotes(
-        title: String, content: String,
-        textsize: String, textfont: String, textclr: String,
-        bgclr: String, address: String, sketchList: ArrayList<String>
+        title: String,
+        content: String,
+        textsize: String,
+        textfont: String,
+        textclr: String,
+        bgclr: String,
+        address: String,
+        sketchList: ArrayList<String>,
+        bookmark: String,
+        date: String,
+        reminder_date: String
     ) {
-        //open Database here
         openDB()
         val values = ContentValues()
         values.put(KEY_TITLE, title)
@@ -73,14 +88,19 @@ class DbHelper(context: Context) :
         values.put(TEXT_CLR, textclr)
         values.put(BG_CLR, bgclr)
         values.put(ADDRESS, address)
+        values.put(BOOKMARK, bookmark)
+        values.put(CURRENT_DATE, date)
+        values.put(REMINDER_DATE, reminder_date)
+        Log.e("bookmarksss", bookmark)
 
-        var index = myDbInstance.insert(TABLE_NOTES, null, values)
+        val index = myDbInstance.insert(TABLE_NOTES, null, values)
         Log.e("success22", "index of notes -> $index")
 
         addSketchImageOfNotes(index.toInt(), sketchList)
 
         //close Database here when all operation done
         closeDB()
+
     }
 
     fun openDB() {
@@ -106,22 +126,15 @@ class DbHelper(context: Context) :
     //method to read data
     fun viewnote(): List<create_note> {
         openDB()
-
-
         val selectQuery = "SELECT  * FROM $TABLE_NOTES"
         val noteList: ArrayList<create_note> = ArrayList<create_note>()
+
         val cursor = myDbInstance.rawQuery(selectQuery, null)
 
-//        var cursor: Cursor? = null
-//        try{
-//            cursor = db.rawQuery(selectQuery, null)
-//        }catch (e: SQLiteException) {
-//            db.execSQL(selectQuery)
-//            return ArrayList()
-//        }
         var note_id: Int
         var note_title: String
         var note_content: String
+
         if (cursor.moveToFirst()) {
             do {
 
@@ -131,18 +144,25 @@ class DbHelper(context: Context) :
                 val textsize: String = cursor.getString(cursor.getColumnIndexOrThrow(TEXT_SIZE))
                 val textclr: String = cursor.getString(cursor.getColumnIndexOrThrow(TEXT_CLR))
                 val textfont: String = cursor.getString(cursor.getColumnIndexOrThrow(TEXT_FONT))
-                var bgclr: String = cursor.getString(cursor.getColumnIndexOrThrow(BG_CLR))
-                var addres: String = cursor.getString(cursor.getColumnIndexOrThrow(ADDRESS))
+                val bgclr: String = cursor.getString(cursor.getColumnIndexOrThrow(BG_CLR))
+                val addres: String = cursor.getString(cursor.getColumnIndexOrThrow(ADDRESS))
+                val bookmark: String = cursor.getString(cursor.getColumnIndexOrThrow(BOOKMARK))
+                val date: String = cursor.getString(cursor.getColumnIndexOrThrow(CURRENT_DATE))
+                val reminder_date: String =
+                    cursor.getString(cursor.getColumnIndexOrThrow(REMINDER_DATE))
 
                 val note = create_note(
                     id = note_id,
+                    bg_clr = bgclr,
+                    txtsize = textsize,
+                    text_font = textfont,
+                    text_clr = textclr,
                     title = note_title,
                     content = note_content,
-                    txtsize = textsize,
-                    text_clr = textclr,
-                    text_font = textfont,
-                    bg_clr = bgclr,
-                    address = addres
+                    address = addres,
+                    bookmark = bookmark,
+                    currentdate = date,
+                    reminderDate = reminder_date
                 )
 
                 /**
@@ -150,7 +170,7 @@ class DbHelper(context: Context) :
                  */
                 val selectedQueryForSketchImagesOfNotes =
                     "SELECT * FROM $TABLE_NOTES_SKETCH_IMAGE where $KEY_NOTE_ID = '" + note_id + "'"
-                var sketchList = ArrayList<String>()
+                val sketchList = ArrayList<String>()
                 val innnerCursor = myDbInstance.rawQuery(selectedQueryForSketchImagesOfNotes, null)
                 if (innnerCursor.moveToFirst()) {
                     do {

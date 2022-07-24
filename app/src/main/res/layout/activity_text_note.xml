@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/grey"
-    tools:context=".Text_note">
+    tools:context=".activities.AddNoteActivity">
 
     <include
         android:id="@+id/included"
@@ -13,142 +13,57 @@
         android:layout_width="match_parent"
         android:layout_height="55dp" />
 
-    <HorizontalScrollView
-        android:id="@+id/selectionScroll"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/included"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true">
-
-        <LinearLayout
-            android:id="@+id/linear"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="8dp"
-            android:background="@color/white"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-
-            <ImageButton
-                android:id="@+id/fileupload"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                android:background="@color/orange"
-                android:src="@drawable/ic_baseline_attach_file_24"
-
-                >
-
-            </ImageButton>
-
-            <ImageButton
-                android:id="@+id/bgcolor"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginEnd="5dp"
-                android:background="@color/orange"
-                android:src="@drawable/ic_baseline_color_lens_24">
-
-            </ImageButton>
-
-            <ImageButton
-                android:id="@+id/fontcolor"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginEnd="5dp"
-                android:background="@color/orange"
-                android:src="@drawable/ic_baseline_color_lens_24">
-
-            </ImageButton>
-
-            <ImageButton
-                android:id="@+id/textsize"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginEnd="5dp"
-                android:background="@color/orange"
-                android:src="@drawable/ic_baseline_format_size_24">
-
-            </ImageButton>
-
-            <ImageButton
-                android:id="@+id/textfont"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginEnd="5dp"
-                android:background="@color/orange"
-                android:src="@drawable/ic_baseline_font_download_24">
-
-            </ImageButton>
-
-            <ImageButton
-                android:id="@+id/my_location"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginEnd="5dp"
-                android:background="@color/orange"
-                android:src="@drawable/ic_baseline_location_on_24">
-
-            </ImageButton>
-
-            <ImageButton
-                android:id="@+id/my_sketch"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginEnd="5dp"
-                android:background="@color/orange"
-                android:src="@drawable/create_24">
-
-            </ImageButton>
-
-            <ImageButton
-                android:id="@+id/my_bookmark"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginEnd="5dp"
-                android:background="@color/orange"
-                android:src="@drawable/bookmark">
-
-            </ImageButton>
-
-
-        </LinearLayout>
-    </HorizontalScrollView>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/selectionScroll"
+        android:layout_below="@id/included"
+        android:layout_margin="10dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
         android:elevation="10dp">
 
-        <EditText
-            android:id="@+id/text_title"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="5dp"
-            android:background="@null"
-            android:hint="Title"
-            android:imeOptions="actionDone"
-            android:lines="1"
-            android:padding="10dp"
-            android:singleLine="true"
+            android:layout_height="45dp">
 
-            android:textColor="@color/black"
-            android:textSize="15sp"
-            android:textStyle="bold">
+            <EditText
+                android:id="@+id/text_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@android:color/transparent"
+                android:hint="Title"
+                android:padding="1dp"
+                android:lines="1"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textStyle="bold">
 
-        </EditText>
+            </EditText>
+
+            <ImageView
+                android:id="@+id/bookmark"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:src="@drawable/bookmark">
+
+            </ImageView>
+        </RelativeLayout>
+
+
     </androidx.cardview.widget.CardView>
 
 
@@ -175,38 +90,35 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="5dp"
                 android:layout_marginBottom="5dp"
-                android:background="@null"
-                android:hint="content"
-                android:padding="10dp"
+                android:background="@android:color/transparent"
+                android:hint="description"
+                android:lines="4"
+                android:padding="1dp"
                 android:textColor="@color/black"
                 android:textSize="15sp">
 
             </EditText>
 
-            <ImageView
-                android:id="@+id/bookmark"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_alignParentEnd="true"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_marginBottom="5dp"
-                android:src="@drawable/bookmark">
-
-            </ImageView>
 
             <ScrollView
                 android:id="@+id/scroll"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@id/text_context"
-                android:layout_margin="10dp">
+                android:layout_below="@id/text_context">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="5dp"
+                        android:background="@color/grey"
+
+                        ></View>
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/file_attach"
@@ -219,6 +131,15 @@
 
                     </androidx.recyclerview.widget.RecyclerView>
 
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="5dp"
+                        android:background="@color/grey"
+
+                        ></View>
+
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/img_attach"
                         android:layout_width="match_parent"
@@ -230,40 +151,224 @@
 
                     </androidx.recyclerview.widget.RecyclerView>
 
-                    <TextView
-                        android:id="@+id/location"
+                    <View
                         android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="5dp"
+                        android:background="@color/grey"
+
+                        ></View>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="10sp">
+                        android:layout_marginLeft="7dp"
+                        android:layout_marginTop="7dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
 
-                    </TextView>
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_baseline_location_on_24"
+                            app:tint="@color/red"></ImageView>
 
-                    <TextView
-                        android:id="@+id/alarm_tv"
+                        <TextView
+                            android:id="@+id/location"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Address"
+                            android:textSize="15sp">
+
+                        </TextView>
+                    </LinearLayout>
+
+                    <View
                         android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="5dp"
+                        android:background="@color/grey"
+
+                        ></View>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="add reminder"
-                        android:textSize="10sp">
+                        android:layout_margin="7dp"
+                        android:gravity="center">
 
-                    </TextView>
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_baseline_alarm_24"
+                            app:tint="@color/red"></ImageView>
 
-                    <ImageView
-                        android:id="@+id/image"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp">
 
-                    </ImageView>
+                        <TextView
+                            android:id="@+id/alarm_tv"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Add reminder"
+                            android:textSize="15sp">
+
+                        </TextView>
+                    </LinearLayout>
+
+
                 </LinearLayout>
             </ScrollView>
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/done"
+
+            <LinearLayout
+                android:id="@+id/fab_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
-                android:layout_margin="10dp"
-                android:src="@drawable/ic_add"></com.google.android.material.floatingactionbutton.FloatingActionButton>
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/my_bookmark"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@color/orange"
+                    android:contentDescription="@string/app_name"
+                    android:padding="4dp"
+                    android:src="@drawable/bookmark"
+                    android:visibility="gone"
+                    app:backgroundTint="@color/orange"
+                    app:fabSize="mini"
+                    app:tint="@color/white" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/my_sketch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@color/orange"
+                    android:contentDescription="@string/app_name"
+                    android:padding="4dp"
+                    android:src="@drawable/create_24"
+                    android:visibility="gone"
+                    app:backgroundTint="@color/orange"
+                    app:fabSize="mini"
+                    app:tint="@color/white" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/my_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@color/orange"
+                    android:contentDescription="@string/app_name"
+                    android:padding="4dp"
+                    android:src="@drawable/ic_baseline_location_on_24"
+                    android:visibility="gone"
+                    app:backgroundTint="@color/orange"
+                    app:fabSize="mini"
+                    app:tint="@color/white" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/textfont"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@color/orange"
+                    android:contentDescription="@string/app_name"
+                    android:padding="4dp"
+                    android:src="@drawable/ic_baseline_font_download_24"
+                    android:visibility="gone"
+                    app:backgroundTint="@color/orange"
+                    app:fabSize="mini"
+                    app:tint="@color/white" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/textsize"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@color/orange"
+                    android:contentDescription="@string/app_name"
+                    android:padding="4dp"
+                    android:src="@drawable/ic_baseline_format_size_24"
+                    android:visibility="gone"
+                    app:backgroundTint="@color/orange"
+                    app:fabSize="mini"
+                    app:tint="@color/white" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fontcolor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@color/orange"
+                    android:contentDescription="@string/app_name"
+                    android:padding="4dp"
+                    android:src="@drawable/txt_color_24"
+                    android:visibility="gone"
+                    app:backgroundTint="@color/orange"
+                    app:fabSize="mini"
+                    app:tint="@color/white" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/bgcolor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@color/orange"
+                    android:contentDescription="@string/app_name"
+                    android:padding="4dp"
+                    android:src="@drawable/ic_baseline_color_lens_24"
+                    android:visibility="gone"
+                    app:backgroundTint="@color/orange"
+                    app:fabSize="mini"
+                    app:tint="@color/white" />
+
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/img_upload"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@color/orange"
+                    android:contentDescription="@string/app_name"
+                    android:padding="4dp"
+                    android:src="@drawable/image_24"
+                    android:visibility="gone"
+                    app:backgroundTint="@color/orange"
+                    app:fabSize="mini"
+                    app:tint="@color/white" />
+
+                <!--on below line we are creating a settings fab
+                        and setting its visibility to gone-->
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/idFABAdd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:background="@color/orange"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/ic_add"
+                    app:backgroundTint="@color/orange"
+                    app:tint="@color/white" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/done"
+                    android:layout_width="wrap_content"
+                    android:layout_height="56dp"
+                    android:layout_margin="8dp"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/done_24"
+                    android:visibility="visible">
+
+                </com.google.android.material.floatingactionbutton.FloatingActionButton>
+
+            </LinearLayout>
+
 
         </RelativeLayout>
 

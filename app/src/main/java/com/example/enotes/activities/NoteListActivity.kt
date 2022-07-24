@@ -1,4 +1,4 @@
-package com.example.enotes
+package com.example.enotes.activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,15 +8,14 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import com.example.enotes.R
 import com.example.enotes.adapter.All_notes_adapter
 import com.example.enotes.databasehelper.DbHelper
 import com.example.enotes.models.create_note
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.activity_main.*
 
 
-class MainActivity : AppCompatActivity() {
+class NoteListActivity : AppCompatActivity() {
 
     lateinit var toggle: ActionBarDrawerToggle
     lateinit var adapter: All_notes_adapter
@@ -24,9 +23,6 @@ class MainActivity : AppCompatActivity() {
 
     fun getAllNotesFromDatabase() {
         val db = DbHelper(this)
-        val show_notes = findViewById<RecyclerView>(R.id.show_notes)
-        show_notes.layoutManager = GridLayoutManager(this, 2)
-
         notesList = ArrayList()
         notesList.addAll(db.viewnote())
         adapter = All_notes_adapter(notesList, this)
@@ -34,35 +30,20 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val db = DbHelper(this)
-        val notesList: ArrayList<create_note> = ArrayList()
 
-        notesList.addAll(db.viewnote())
+        show_notes.layoutManager = GridLayoutManager(this, 2)
 
-
-//        val show_notes = findViewById<RecyclerView>(R.id.show_notes)
-//        val adapter = All_notes_adapter(notesList,this)
-//        show_notes.adapter = adapter
-//        show_notes.layoutManager= GridLayoutManager(this,2)
-//        adapter.notifyDataSetChanged()
-
-
-        val add_notes = findViewById<FloatingActionButton>(R.id.add_notes)
         add_notes.setOnClickListener {
 
-            val intent = Intent(this, Text_note::class.java)
-            startActivity(intent)
+            startActivity(Intent(applicationContext, AddNoteActivity::class.java))
+//            MyHelper.changeActivity(this@NoteListActivity, to = AddNoteActivity())
 
         }
 
-
-//        val dehaze = findViewById<ImageView>(R.id.dehaze)
-//
-//        val drawerlayout = findViewById<DrawerLayout>(R.id.my_drawer_layout)
-//        val navView = findViewById<NavigationView>(R.id.navview)
 
         dehaze.setOnClickListener {
             my_drawer_layout.openDrawer(GravityCompat.START)
@@ -74,22 +55,38 @@ class MainActivity : AppCompatActivity() {
         my_drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
 
+        navview.itemIconTintList = null
+
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         navview.setNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.nav_allnotes ->
                     Toast.makeText(applicationContext, "all notes", Toast.LENGTH_SHORT).show()
-
-
             }
-            true
             when (it.itemId) {
-                R.id.nav_reminders ->
-                    Toast.makeText(applicationContext, "all reminders", Toast.LENGTH_SHORT)
-                        .show()
-
-
+                R.id.nav_travel ->
+                    Toast.makeText(applicationContext, "all travels", Toast.LENGTH_SHORT).show()
+            }
+            when (it.itemId) {
+                R.id.nav_untag ->
+                    Toast.makeText(applicationContext, "all untags", Toast.LENGTH_SHORT).show()
+            }
+            when (it.itemId) {
+                R.id.nav_life ->
+                    Toast.makeText(applicationContext, "all lifes", Toast.LENGTH_SHORT).show()
+            }
+            when (it.itemId) {
+                R.id.nav_birthdays ->
+                    Toast.makeText(applicationContext, "all birthdays", Toast.LENGTH_SHORT).show()
+            }
+            when (it.itemId) {
+                R.id.nav_peronal ->
+                    Toast.makeText(applicationContext, "all personals", Toast.LENGTH_SHORT).show()
+            }
+            when (it.itemId) {
+                R.id.nav_work ->
+                    Toast.makeText(applicationContext, "all works", Toast.LENGTH_SHORT).show()
             }
             true
         }
@@ -109,4 +106,5 @@ class MainActivity : AppCompatActivity() {
 
         getAllNotesFromDatabase()
     }
+
 }

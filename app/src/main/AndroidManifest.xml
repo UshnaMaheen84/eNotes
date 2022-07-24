@@ -9,6 +9,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -19,24 +20,28 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ENotes"
         tools:targetApi="31">
+        <activity
+            android:name=".activities.OpenImageActivity"
+            android:exported="false" />
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/map_key" />
 
         <activity
-            android:name=".ViewNotes"
+            android:name=".activities.EditNoteActivity"
             android:exported="false" />
         <activity
-            android:name=".Text_note"
+            android:name=".activities.AddNoteActivity"
             android:exported="false" />
         <activity
-            android:name=".Login"
+            android:name=".activities.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".Signup"
+            android:name=".activities.SignupActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.NoteListActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -44,15 +49,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <receiver android:name=".BroadcastService"
+
+        <receiver
+            android:name=".BroadcastService"
             android:exported="true">
             <intent-filter>
-                <action android:name="com.myaction.com">
-                </action>
+                <action android:name="com.myaction.com"></action>
             </intent-filter>
-
         </receiver>
-
     </application>
 
 </manifest>

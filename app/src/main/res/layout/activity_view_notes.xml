@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/grey"
-    tools:context=".Text_note">
+    tools:context=".activities.AddNoteActivity">
 
     <include
         android:id="@+id/included"
@@ -30,13 +30,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="5dp"
+            android:background="@null"
             android:backgroundTintMode="multiply"
             android:focusableInTouchMode="false"
             android:hint="Title"
             android:padding="1dp"
             android:textColor="@color/black"
             android:textColorHint="@color/black"
-            android:textSize="25sp"
+            android:textSize="18sp"
             android:textStyle="bold">
 
         </EditText>
@@ -64,8 +65,9 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="5dp"
                 android:layout_marginBottom="5dp"
+                android:background="@null"
                 android:focusableInTouchMode="false"
-                android:hint="content"
+                android:hint="description here"
                 android:padding="1dp"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"
@@ -82,7 +84,17 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
                     android:orientation="vertical">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="5dp"
+                        android:background="@color/grey"
+
+                        ></View>
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/file_attach"
@@ -95,6 +107,15 @@
 
                     </androidx.recyclerview.widget.RecyclerView>
 
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="5dp"
+                        android:background="@color/grey"
+
+                        ></View>
+
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/img_attach"
                         android:layout_width="match_parent"
@@ -105,19 +126,113 @@
                         tools:spanCount="2">
 
                     </androidx.recyclerview.widget.RecyclerView>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="5dp"
+                        android:background="@color/grey"
+
+                        ></View>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_baseline_location_on_24"
+                                app:tint="@color/red"></ImageView>
+
+                            <TextView
+                                android:id="@+id/viewAddress"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Address"
+                                android:textSize="15sp">
+
+                            </TextView>
+                        </LinearLayout>
+
+                        <ImageView
+                            android:id="@+id/edit_address"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerInParent="true"
+                            android:background="@color/orange"
+                            android:src="@drawable/create_24"
+                            android:visibility="visible">
+
+                        </ImageView>
+
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="5dp"
+                        android:background="@color/grey"
+
+                        ></View>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="7dp"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_baseline_alarm_24"
+                            app:tint="@color/red"></ImageView>
+
+
+                        <TextView
+                            android:id="@+id/view_reminders"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Add reminder"
+                            android:textSize="15sp">
+
+                        </TextView>
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="5dp"
+                        android:background="@color/grey"
+
+                        ></View>
                 </LinearLayout>
             </ScrollView>
 
 
             <Button
-                android:id="@+id/done"
+                android:id="@+id/view_done"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
+                android:layout_margin="10dp"
+                android:visibility="gone"
                 android:text="done">
 
             </Button>
+
 
             <Button
                 android:id="@+id/update"
@@ -125,9 +240,160 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
-                android:text="Update">
+                android:layout_margin="10dp"
+                android:text="Edit">
+
 
             </Button>
+
+            <LinearLayout
+                android:id="@+id/fab_layout_two"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:orientation="vertical"
+                android:padding="5dp"
+                android:visibility="gone">
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/my_bookmark_two"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@color/orange"
+                    android:contentDescription="@string/app_name"
+                    android:padding="4dp"
+                    android:src="@drawable/bookmark"
+                    android:visibility="gone"
+                    app:backgroundTint="@color/orange"
+                    app:fabSize="mini"
+                    app:tint="@color/white" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/my_sketch_two"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@color/orange"
+                    android:contentDescription="@string/app_name"
+                    android:padding="4dp"
+                    android:src="@drawable/create_24"
+                    android:visibility="gone"
+                    app:backgroundTint="@color/orange"
+                    app:fabSize="mini"
+                    app:tint="@color/white" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/my_location_two"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@color/orange"
+                    android:contentDescription="@string/app_name"
+                    android:padding="4dp"
+                    android:src="@drawable/ic_baseline_location_on_24"
+                    android:visibility="gone"
+                    app:backgroundTint="@color/orange"
+                    app:fabSize="mini"
+                    app:tint="@color/white" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/textfont_two"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@color/orange"
+                    android:contentDescription="@string/app_name"
+                    android:padding="4dp"
+                    android:src="@drawable/ic_baseline_font_download_24"
+                    android:visibility="gone"
+                    app:backgroundTint="@color/orange"
+                    app:fabSize="mini"
+                    app:tint="@color/white" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/textsize_two"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@color/orange"
+                    android:contentDescription="@string/app_name"
+                    android:padding="4dp"
+                    android:src="@drawable/ic_baseline_format_size_24"
+                    android:visibility="gone"
+                    app:backgroundTint="@color/orange"
+                    app:fabSize="mini"
+                    app:tint="@color/white" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fontcolor_two"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@color/orange"
+                    android:contentDescription="@string/app_name"
+                    android:padding="4dp"
+                    android:src="@drawable/txt_color_24"
+                    android:visibility="gone"
+                    app:backgroundTint="@color/orange"
+                    app:fabSize="mini"
+                    app:tint="@color/white" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/bgcolor_two"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@color/orange"
+                    android:contentDescription="@string/app_name"
+                    android:padding="4dp"
+                    android:src="@drawable/ic_baseline_color_lens_24"
+                    android:visibility="gone"
+                    app:backgroundTint="@color/orange"
+                    app:fabSize="mini"
+                    app:tint="@color/white" />
+
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/img_upload_two"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@color/orange"
+                    android:contentDescription="@string/app_name"
+                    android:padding="4dp"
+                    android:src="@drawable/image_24"
+                    android:visibility="gone"
+                    app:backgroundTint="@color/orange"
+                    app:fabSize="mini"
+                    app:tint="@color/white" />
+
+                <!--on below line we are creating a settings fab
+                        and setting its visibility to gone-->
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/idFABAdd_two"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:background="@color/orange"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/ic_add"
+                    app:backgroundTint="@color/orange"
+                    app:tint="@color/white" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/done_two"
+                    android:layout_width="wrap_content"
+                    android:layout_height="56dp"
+                    android:layout_margin="8dp"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/done_24"
+                    android:visibility="visible">
+
+                </com.google.android.material.floatingactionbutton.FloatingActionButton>
+
+            </LinearLayout>
 
 
         </RelativeLayout>

@@ -4,10 +4,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/headerTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/orange"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="Draw Sketch"
+        android:textColor="@color/white"
+        android:textSize="18sp"></TextView>
+
     <com.redhoodhan.draw.DrawView
         android:id="@+id/drawing_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="60dp"
         app:defaultBrushColor="@color/black">
 
     </com.redhoodhan.draw.DrawView>
@@ -17,6 +29,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_alignParentEnd="true"
+        android:layout_marginTop="50dp"
         android:contentDescription="done"
         android:src="@drawable/done_24">
 

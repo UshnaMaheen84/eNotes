@@ -1,15 +1,17 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-android'
     id 'kotlin-android-extensions'
 }
+
 
 android {
     compileSdk 32
 
     defaultConfig {
         applicationId "com.example.enotes"
-        minSdk 26
+        minSdk 25
         targetSdk 32
         versionCode 1
         versionName "1.0"
@@ -22,6 +24,9 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+    buildFeatures {
+        viewBinding = true
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -52,5 +57,12 @@ dependencies {
 
     implementation 'com.github.Miihir79:DrawingCanvas:1.1.2'
     implementation 'com.github.DonghanX:Draw:v1.0.3'
+
+    // dependencies for Api integration | Retrofit 2
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-scalars:2.9.0'
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2'
 
 }
